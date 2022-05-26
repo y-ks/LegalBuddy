@@ -2,6 +2,10 @@
 
 LegalBuddy is a web app to conveniently find lawyers of your choice.
 
+# Web App URL
+
+The web app is live at https://y-ks.github.io/LegalBuddy
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
