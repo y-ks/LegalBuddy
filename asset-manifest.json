@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/legalbuddy/static/js/main.daa6a4d5.js",
+    "index.html": "/legalbuddy/index.html",
+    "main.daa6a4d5.js.map": "/legalbuddy/static/js/main.daa6a4d5.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.daa6a4d5.js"
+  ]
+}
