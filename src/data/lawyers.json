@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1001,
+    "name": "Niraj Thapa",
+    "img_src": "niraj-thapa",
+    "category": "business",
+    "address": "Nakhipot, Lalitpur",
+    "email": "nirajthapa@gmail.com",
+    "phone": "9823451234",
+    "bio": "An excellent business lawyer.",
+    "rating": 8,
+    "education": "Master of Legal Studies - Kathmandu Law College",
+    "career": { "total_cases": 1278, "cases_won": 989 },
+    "languages": ["Nepali", "English", "Hindi"]
+  },
+  {
+    "id": 1002,
+    "name": "Yubaraj Moktan",
+    "img_src": "yubaraj-moktan",
+    "category": "defense",
+    "address": "Budhanilkantha, Kathmandu",
+    "email": "yubarajmoktan@gmail.com",
+    "phone": "9898789654",
+    "bio": "An excellent defense lawyer.",
+    "rating": 8,
+    "education": "Master of Dispute Resolution - Kathmandu Law College",
+    "career": { "total_cases": 878, "cases_won": 445 },
+    "languages": ["Nepali", "English", "Hindi", "Tamang"]
+  }
+]
