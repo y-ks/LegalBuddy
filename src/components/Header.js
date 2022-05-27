@@ -1,18 +1,20 @@
 import React from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setCategory } from "../store/categorySlice";
-import Categories from "./../data/categories";
+import Lawyers from "./../data/lawyers";
 
 const Header = () => {
-  const category = useSelector((state) => state.category.value);
   const dispatch = useDispatch();
-
+  const categories = [];
+  Lawyers.forEach((lawyer) => {
+    categories.push(lawyer["category"]);
+  });
   return (
     <header>
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand>
+          <Navbar.Brand onClick={() => dispatch(setCategory("all"))}>
             <img
               className="logo"
               src={process.env.PUBLIC_URL + "/favicon.ico"}
@@ -24,7 +26,7 @@ const Header = () => {
             <Nav.Link onClick={() => dispatch(setCategory("all"))}>
               all
             </Nav.Link>
-            {Categories.map((value, i) => (
+            {categories.map((value, i) => (
               <Nav.Link key={i} onClick={() => dispatch(setCategory(value))}>
                 {value}
               </Nav.Link>
@@ -32,7 +34,6 @@ const Header = () => {
           </Nav>
         </Container>
       </Navbar>
-      <h1>category === {category}</h1>
     </header>
   );
 };
