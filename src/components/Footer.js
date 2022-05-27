@@ -5,7 +5,7 @@ import { faCopyright } from "@fortawesome/free-solid-svg-icons";
 
 const Footer = () => {
   return (
-    <footer className="fixed-bottom text-light">
+    <footer className="text-light">
       <Navbar bg="dark" variant="dark">
         <Container className="justify-content-center">
           <span>

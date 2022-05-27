@@ -16,6 +16,7 @@ const LawyerCardList = () => {
   }
   return (
     <Container className="mt-2 mb-5">
+      <h1 className="text-capitalize my-4">{category} Lawyers</h1>
       <Row xs={1} sm={2} md={3} lg={4} className="g-4">
         {filteredLawyers.map((lawyer) => (
           <Col key={lawyer.id}>

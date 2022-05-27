@@ -8,11 +8,12 @@ const Header = () => {
   const dispatch = useDispatch();
   const categories = [];
   Lawyers.forEach((lawyer) => {
-    categories.push(lawyer["category"]);
+    const category = lawyer["category"];
+    if (categories.indexOf(category) === -1) categories.push(category);
   });
   return (
     <header>
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="dark" variant="dark" expand="lg">
         <Container>
           <Navbar.Brand onClick={() => dispatch(setCategory("all"))}>
             <img
@@ -22,16 +23,19 @@ const Header = () => {
             />
             <span>Legal Buddy</span>
           </Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link onClick={() => dispatch(setCategory("all"))}>
-              all
-            </Nav.Link>
-            {categories.map((value, i) => (
-              <Nav.Link key={i} onClick={() => dispatch(setCategory(value))}>
-                {value}
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link onClick={() => dispatch(setCategory("all"))}>
+                all
               </Nav.Link>
-            ))}
-          </Nav>
+              {categories.map((value, i) => (
+                <Nav.Link key={i} onClick={() => dispatch(setCategory(value))}>
+                  {value}
+                </Nav.Link>
+              ))}
+            </Nav>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
     </header>

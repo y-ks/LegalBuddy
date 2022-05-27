@@ -1,5 +1,11 @@
 $logoWidth: 20px;
 
+div#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 header {
   nav.navbar {
     span.navbar-brand {
@@ -16,4 +22,8 @@ header {
       text-transform: capitalize;
     }
   }
+}
+
+footer {
+  margin-top: auto;
 }
