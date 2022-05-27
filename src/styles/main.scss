@@ -1,16 +1,18 @@
 $logoWidth: 20px;
 
-nav.navbar {
-  a.navbar-brand {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    img.logo {
-      height: $logoWidth;
-      width: $logoWidth;
+header {
+  nav.navbar {
+    a.navbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      img.logo {
+        height: $logoWidth;
+        width: $logoWidth;
+      }
     }
-  }
-  a.nav-link {
-    text-transform: capitalize;
+    a.nav-link {
+      text-transform: capitalize;
+    }
   }
 }
