@@ -1,7 +1,11 @@
 import React from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Image, Modal } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import Lawyers from "./../data/lawyers";
 
 const LawyerModal = (props) => {
+  const id = useSelector((state) => state.modalDialog.lawyerId);
+  const lawyer = Lawyers.find((lawyer) => lawyer.id === id);
   return (
     <Modal
       {...props}
@@ -10,17 +14,23 @@ const LawyerModal = (props) => {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
+        <Modal.Title
+          id="contained-modal-title-vcenter"
+          className="d-flex flex-row gap-2 justify-content-center align-items-center"
+        >
+          <Image
+            src={`${process.env.PUBLIC_URL}/lawyers/${lawyer.img_src}.jpg`}
+            roundedCircle
+            width="120"
+          />{" "}
+          <div>
+            <h4>{lawyer.name}</h4>
+            <h5 className="text-capitalize text-muted">{`${lawyer.category} Lawyer`}</h5>
+          </div>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4>Centered Modal</h4>
-        <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros.
-        </p>
+        <p>{lawyer.bio}</p>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>

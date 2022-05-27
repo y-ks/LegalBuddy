@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import category from "./categorySlice";
+import categoryReducer from "./categorySlice";
+import modalReducer from "./modalSlice";
 
 export const store = configureStore({
-  reducer: { category },
+  reducer: { category: categoryReducer, modalDialog: modalReducer },
 });

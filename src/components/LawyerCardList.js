@@ -1,11 +1,15 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { hideModal } from "../store/modalSlice";
 import Lawyers from "./../data/lawyers";
 import LawyerCard from "./LawyerCard";
+import LawyerModal from "./LawyerModal";
 
 const LawyerCardList = () => {
   const category = useSelector((state) => state.category.value);
+  const modalShow = useSelector((state) => state.modalDialog.isModalShow);
+  const dispatch = useDispatch();
   let filteredLawyers = [];
   if (category === "all") {
     filteredLawyers = Lawyers;
@@ -16,6 +20,7 @@ const LawyerCardList = () => {
   }
   return (
     <Container className="mb-4">
+      <LawyerModal show={modalShow} onHide={() => dispatch(hideModal())} />
       <h1 className="text-capitalize mt-3 mb-4">{category} Lawyers</h1>
       <Row xs={1} sm={2} md={3} lg={4} className="g-4">
         {filteredLawyers.map((lawyer) => (
