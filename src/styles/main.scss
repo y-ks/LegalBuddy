@@ -2,10 +2,11 @@ $logoWidth: 20px;
 
 header {
   nav.navbar {
-    a.navbar-brand {
+    span.navbar-brand {
       display: flex;
       align-items: center;
       gap: 4px;
+      cursor: pointer;
       img.logo {
         height: $logoWidth;
         width: $logoWidth;
