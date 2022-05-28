@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/LegalBuddy/static/css/main.7399bbf1.css",
-    "main.js": "/LegalBuddy/static/js/main.20ba51ee.js",
+    "main.css": "/LegalBuddy/static/css/main.9c5154b2.css",
+    "main.js": "/LegalBuddy/static/js/main.57376ef4.js",
     "index.html": "/LegalBuddy/index.html",
-    "main.7399bbf1.css.map": "/LegalBuddy/static/css/main.7399bbf1.css.map",
-    "main.20ba51ee.js.map": "/LegalBuddy/static/js/main.20ba51ee.js.map"
+    "main.9c5154b2.css.map": "/LegalBuddy/static/css/main.9c5154b2.css.map",
+    "main.57376ef4.js.map": "/LegalBuddy/static/js/main.57376ef4.js.map"
   },
   "entrypoints": [
-    "static/css/main.7399bbf1.css",
-    "static/js/main.20ba51ee.js"
+    "static/css/main.9c5154b2.css",
+    "static/js/main.57376ef4.js"
   ]
 }
