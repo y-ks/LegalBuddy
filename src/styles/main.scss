@@ -31,3 +31,17 @@ div.card {
 footer {
   margin-top: auto;
 }
+
+span.rating {
+  color: orange;
+  display: inline-flex;
+  gap: 2px;
+  margin-top: 8px;
+}
+
+div.modal-header {
+  span.rating {
+    font-size: large;
+    margin-top: 4px;
+  }
+}

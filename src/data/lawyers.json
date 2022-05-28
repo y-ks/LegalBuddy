@@ -8,7 +8,7 @@
     "email": "nirajthapa@gmail.com",
     "phone": "9823451234",
     "bio": "An excellent business lawyer.",
-    "rating": 8,
+    "rating": 9,
     "education": "Master of Legal Studies - Kathmandu Law College",
     "career": { "total_cases": 1278, "cases_won": 989 },
     "languages": ["Nepali", "English", "Hindi"]
@@ -50,7 +50,7 @@
     "email": "manishacharya@gmail.com",
     "phone": "9898789654",
     "bio": "An excellent bankruptcy lawyer.",
-    "rating": 6,
+    "rating": 7,
     "education": "Master of Dispute Resolution - Kathmandu Law College",
     "career": { "total_cases": 878, "cases_won": 445 },
     "languages": ["Nepali", "English", "Hindi"]

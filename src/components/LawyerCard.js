@@ -1,6 +1,7 @@
 import { Card } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { showModal } from "../store/modalSlice";
+import Rating from "./Rating";
 
 const LawyerCard = (props) => {
   const dispatch = useDispatch();
@@ -14,7 +15,11 @@ const LawyerCard = (props) => {
         />
         <Card.Body>
           <Card.Title>{lawyer.name}</Card.Title>
-          <Card.Text>{lawyer.bio}</Card.Text>
+          <Card.Text>
+            {lawyer.bio}
+            <br />
+            <Rating rating={lawyer.rating} />
+          </Card.Text>
         </Card.Body>
       </Card>
     </>

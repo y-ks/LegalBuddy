@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Image, Modal } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import Lawyers from "./../data/lawyers";
+import Rating from "./Rating";
 
 const LawyerModal = (props) => {
   const id = useSelector((state) => state.modalDialog.lawyerId);
@@ -9,7 +10,7 @@ const LawyerModal = (props) => {
   return (
     <Modal
       {...props}
-      size="lg"
+      size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
@@ -22,10 +23,11 @@ const LawyerModal = (props) => {
             src={`${process.env.PUBLIC_URL}/lawyers/${lawyer.img_src}.jpg`}
             roundedCircle
             width="120"
-          />{" "}
+          />
           <div>
             <h4>{lawyer.name}</h4>
             <h5 className="text-capitalize text-muted">{`${lawyer.category} Lawyer`}</h5>
+            <Rating rating={lawyer.rating} />
           </div>
         </Modal.Title>
       </Modal.Header>
