@@ -10,11 +10,11 @@ const LawyerModal = (props) => {
   return (
     <Modal
       {...props}
-      size="md"
+      size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
+      <Modal.Header>
         <Modal.Title
           id="contained-modal-title-vcenter"
           className="d-flex flex-row gap-2 justify-content-center align-items-center"
@@ -32,7 +32,31 @@ const LawyerModal = (props) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p>{lawyer.bio}</p>
+        <p>
+          <strong>About:</strong> {lawyer.bio}
+        </p>
+        <p>
+          <strong>Address:</strong> {lawyer.address}
+        </p>
+        <p>
+          <strong>Email:</strong> {lawyer.email}
+        </p>
+        <p>
+          <strong>Phone:</strong> {lawyer.phone}
+        </p>
+        <p>
+          <strong>Total Cases:</strong> {lawyer.career.total_cases}
+        </p>
+        <p>
+          <strong>Cases Won:</strong> {lawyer.career.cases_won}
+        </p>
+        <p>
+          <strong>Education:</strong> {lawyer.education}
+        </p>
+        <p>
+          <strong>Languages: </strong>
+          {lawyer.languages.join(", ")}
+        </p>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>

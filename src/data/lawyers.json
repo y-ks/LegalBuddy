@@ -38,7 +38,7 @@
     "bio": "An excellent bankruptcy lawyer.",
     "rating": 7,
     "education": "Master of Dispute Resolution - Kathmandu Law College",
-    "career": { "total_cases": 878, "cases_won": 445 },
+    "career": { "total_cases": 668, "cases_won": 555 },
     "languages": ["Nepali", "English", "Hindi", "Spanish"]
   },
   {
@@ -52,7 +52,7 @@
     "bio": "An excellent bankruptcy lawyer.",
     "rating": 7,
     "education": "Master of Dispute Resolution - Kathmandu Law College",
-    "career": { "total_cases": 878, "cases_won": 445 },
+    "career": { "total_cases": 178, "cases_won": 75 },
     "languages": ["Nepali", "English", "Hindi"]
   },
   {
@@ -66,7 +66,7 @@
     "bio": "An excellent bankruptcy lawyer.",
     "rating": 9,
     "education": "Master of Dispute Resolution - Kathmandu Law College",
-    "career": { "total_cases": 878, "cases_won": 445 },
+    "career": { "total_cases": 78, "cases_won": 45 },
     "languages": ["Nepali", "English", "Hindi", "Dutch"]
   },
   {
@@ -80,7 +80,7 @@
     "bio": "An excellent corporate lawyer.",
     "rating": 6,
     "education": "Master of Dispute Resolution - Kathmandu Law College",
-    "career": { "total_cases": 878, "cases_won": 445 },
+    "career": { "total_cases": 238, "cases_won": 123 },
     "languages": ["Nepali", "English", "Hindi"]
   },
   {
@@ -94,7 +94,7 @@
     "bio": "An excellent corporate lawyer.",
     "rating": 5,
     "education": "Master of Dispute Resolution - Kathmandu Law College",
-    "career": { "total_cases": 878, "cases_won": 445 },
+    "career": { "total_cases": 128, "cases_won": 95 },
     "languages": ["Nepali", "English", "Hindi", "French"]
   },
   {
@@ -108,7 +108,7 @@
     "bio": "An excellent corporate lawyer.",
     "rating": 7,
     "education": "Master of Dispute Resolution - Kathmandu Law College",
-    "career": { "total_cases": 878, "cases_won": 445 },
+    "career": { "total_cases": 78, "cases_won": 47 },
     "languages": ["Nepali", "English", "Hindi", "Bhojpuri"]
   },
   {
@@ -122,7 +122,7 @@
     "bio": "An excellent civil rights lawyer.",
     "rating": 8,
     "education": "Master of Dispute Resolution - Kathmandu Law College",
-    "career": { "total_cases": 878, "cases_won": 445 },
+    "career": { "total_cases": 88, "cases_won": 44 },
     "languages": ["Nepali", "English", "Hindi", "Newari"]
   },
   {
@@ -136,7 +136,7 @@
     "bio": "An excellent civil rights lawyer.",
     "rating": 8,
     "education": "Master of Dispute Resolution - Kathmandu Law College",
-    "career": { "total_cases": 878, "cases_won": 445 },
+    "career": { "total_cases": 78, "cases_won": 45 },
     "languages": ["Nepali", "English", "Hindi"]
   },
   {
@@ -150,7 +150,7 @@
     "bio": "An excellent civil rights lawyer.",
     "rating": 8,
     "education": "Master of Dispute Resolution - Kathmandu Law College",
-    "career": { "total_cases": 878, "cases_won": 445 },
+    "career": { "total_cases": 118, "cases_won": 88 },
     "languages": ["Nepali", "English", "Hindi", "Newari"]
   },
   {
@@ -164,7 +164,7 @@
     "bio": "An excellent criminal lawyer.",
     "rating": 8,
     "education": "Master of Dispute Resolution - Kathmandu Law College",
-    "career": { "total_cases": 878, "cases_won": 445 },
+    "career": { "total_cases": 79, "cases_won": 24 },
     "languages": ["Nepali", "English", "Hindi", "Newari"]
   },
   {
@@ -178,7 +178,7 @@
     "bio": "An excellent criminal lawyer.",
     "rating": 8,
     "education": "Master of Dispute Resolution - Kathmandu Law College",
-    "career": { "total_cases": 878, "cases_won": 445 },
+    "career": { "total_cases": 858, "cases_won": 547 },
     "languages": ["Nepali", "English", "Hindi"]
   },
   {
@@ -192,7 +192,7 @@
     "bio": "An excellent criminal lawyer.",
     "rating": 8,
     "education": "Master of Dispute Resolution - Kathmandu Law College",
-    "career": { "total_cases": 878, "cases_won": 445 },
+    "career": { "total_cases": 18, "cases_won": 5 },
     "languages": ["Nepali", "English", "Hindi"]
   },
   {
@@ -206,7 +206,7 @@
     "bio": "An excellent family lawyer.",
     "rating": 8,
     "education": "Master of Dispute Resolution - Kathmandu Law College",
-    "career": { "total_cases": 878, "cases_won": 445 },
+    "career": { "total_cases": 72, "cases_won": 42 },
     "languages": ["Nepali", "English", "Hindi", "French"]
   },
   {
@@ -220,7 +220,7 @@
     "bio": "An excellent family lawyer.",
     "rating": 8,
     "education": "Master of Dispute Resolution - Kathmandu Law College",
-    "career": { "total_cases": 878, "cases_won": 445 },
+    "career": { "total_cases": 38, "cases_won": 22 },
     "languages": ["Nepali", "English", "Hindi"]
   },
   {
@@ -234,7 +234,7 @@
     "bio": "An excellent family lawyer.",
     "rating": 8,
     "education": "Master of Dispute Resolution - Kathmandu Law College",
-    "career": { "total_cases": 878, "cases_won": 445 },
+    "career": { "total_cases": 20, "cases_won": 20 },
     "languages": ["Nepali", "English", "Hindi", "Newari"]
   },
   {
@@ -248,7 +248,7 @@
     "bio": "An excellent family lawyer.",
     "rating": 8,
     "education": "Master of Dispute Resolution - Kathmandu Law College",
-    "career": { "total_cases": 878, "cases_won": 445 },
+    "career": { "total_cases": 210, "cases_won": 200 },
     "languages": ["Nepali", "English", "Hindi", "Newari"]
   },
   {
@@ -262,7 +262,7 @@
     "bio": "An excellent family lawyer.",
     "rating": 8,
     "education": "Master of Dispute Resolution - Kathmandu Law College",
-    "career": { "total_cases": 878, "cases_won": 445 },
+    "career": { "total_cases": 88, "cases_won": 12 },
     "languages": ["Nepali", "English", "Hindi"]
   },
   {
@@ -276,7 +276,7 @@
     "bio": "An excellent family lawyer.",
     "rating": 8,
     "education": "Master of Dispute Resolution - Kathmandu Law College",
-    "career": { "total_cases": 878, "cases_won": 445 },
+    "career": { "total_cases": 7, "cases_won": 4 },
     "languages": ["Nepali", "English", "Hindi", "Newari"]
   }
 ]
