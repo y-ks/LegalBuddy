@@ -9,7 +9,7 @@ function SignupUser() {
           <div className="card">
             <h2 className="card-title text-center">Signup Lawyer</h2>
             <div className="card-body py-md-4">
-              <form _lpchecked="1">
+              <form _lpchecked="1" autoComplete="off">
                 <div className="form-group">
                   <input
                     type="text"
