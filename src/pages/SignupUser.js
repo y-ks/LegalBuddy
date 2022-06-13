@@ -16,6 +16,7 @@ function SignupUser() {
                     className="form-control"
                     id="name"
                     placeholder="Name"
+                    required
                   />
                 </div>
                 <div className="form-group">
@@ -24,6 +25,7 @@ function SignupUser() {
                     className="form-control"
                     id="email"
                     placeholder="Email"
+                    required
                   />
                 </div>
 
@@ -33,6 +35,7 @@ function SignupUser() {
                     className="form-control"
                     id="password"
                     placeholder="Password"
+                    required
                   />
                 </div>
                 <div className="form-group">
@@ -40,7 +43,8 @@ function SignupUser() {
                     type="password"
                     className="form-control"
                     id="confirm-password"
-                    placeholder="confirm-password"
+                    placeholder="Confirm-password"
+                    required
                   />
                 </div>
                 <div className="d-flex flex-row align-items-center justify-content-between">

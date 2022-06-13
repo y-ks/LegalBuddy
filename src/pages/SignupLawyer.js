@@ -87,7 +87,7 @@ function SignupUser() {
                     type="password"
                     className="form-control"
                     id="confirm-password"
-                    placeholder="confirm-password"
+                    placeholder="Confirm-password"
                   />
                 </div>
                 <div className="d-flex flex-row align-items-center justify-content-between">
