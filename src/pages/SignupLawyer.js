@@ -20,13 +20,60 @@ function SignupUser() {
                 </div>
                 <div className="form-group">
                   <input
+                    type="text"
+                    className="form-control"
+                    id="name"
+                    placeholder="Category"
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="name"
+                    placeholder="Address"
+                  />
+                </div>
+                <div className="form-group">
+                  <input
                     type="email"
                     className="form-control"
                     id="email"
                     placeholder="Email"
                   />
                 </div>
-
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="name"
+                    placeholder="Phone Number"
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="name"
+                    placeholder="Bio"
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="name"
+                    placeholder="Education"
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="name"
+                    placeholder="Cases"
+                  />
+                </div>
                 <div className="form-group">
                   <input
                     type="password"

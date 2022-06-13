@@ -18,7 +18,7 @@ const Login = () => {
                 autocomplete="new-password"
               />
             </div>
-            <a href="#" class="link">
+            <a href="/signuplawyer" class="link">
               Signup as Lawyer?
             </a>
           </div>
