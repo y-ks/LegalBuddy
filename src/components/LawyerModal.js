@@ -59,6 +59,12 @@ const LawyerModal = (props) => {
         </p>
       </Modal.Body>
       <Modal.Footer>
+        <Button
+          // style={{ color: "black", background: "white" }}
+          onClick={props.onHide}
+        >
+          Contact
+        </Button>
         <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>

@@ -15,6 +15,9 @@ const Header = () => {
     <header>
       <Navbar bg="dark" variant="dark" expand="lg">
         <Container>
+          <Navbar.Brand>
+            <span>{localStorage.getItem("userName")}</span>
+          </Navbar.Brand>
           <Navbar.Brand onClick={() => dispatch(setCategory("all"))}>
             <img
               className="logo"
