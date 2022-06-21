@@ -1,45 +1,26 @@
 import React from "react";
 import "./login.css";
-import { useRef, useState } from "react";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { useRef } from "react";
+import { userLogin } from "../redux/features/userAction";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const emailRef = useRef();
   const passwordRef = useRef();
-
-  const [isLoggedIn, setLoggedIn] = useState("");
 
   async function handleSubmit(e) {
     console.log(e);
     e.preventDefault();
     console.log(emailRef.current.value + " " + passwordRef.current.value);
 
-    const article = {
+    const value = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
     };
 
-    axios
-      .post("http://localhost:5000/users/login", article)
-      .then((response) => {
-        if (response.status === 200) {
-          setLoggedIn(true);
-          console.log(response.data);
-          console.log(response.data.token);
-          const token = localStorage.setItem("Token", response.data.token);
-          localStorage.setItem("userID", response.data.user._id);
-          localStorage.setItem("userName", response.data.user.name);
-        } else {
-          //console.log(error.data);
-        }
-      })
-      .catch((error) => {
-        console.log("There was an error!", error);
-      });
-  }
-
-  if (isLoggedIn) {
-    window.location.href = "/";
+    console.log(value);
+    dispatch(userLogin(value));
   }
 
   return (

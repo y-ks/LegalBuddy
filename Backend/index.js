@@ -1,12 +1,9 @@
 const express = require("express");
-require("./db/mongoose");
 const app = express();
-const cors = require('cors');
-const port = 5000;
-const userRouter = require("./routers/user");
-
-app.use(cors());
+const port = process.env.PORT || 5000;
+const dbConnection = require("./db");
 app.use(express.json());
-app.use(userRouter);
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.use("/api/users", require("./routes/usersRoute"));
+app.get("/", (req, res) => res.send("Hello World!"));
+app.listen(port, () => console.log("server started"));

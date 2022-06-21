@@ -1,48 +1,45 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useRef, useState } from "react";
 import "./signupuser.css";
 import axios from "axios";
+import { userRegister } from "../redux/features/userAction";
 
-const SignupUser = () =>  {
-
+const SignupUser = () => {
+  const dispatch = useDispatch();
   const nameref = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmpasswordRef = useRef();
 
-
   function addUser() {
-    if(nameref.current.value==="" || emailRef.current.value==="" || passwordRef.current.value===""|| confirmpasswordRef.current.value===""){
+    if (
+      nameref.current.value === "" ||
+      emailRef.current.value === "" ||
+      passwordRef.current.value === "" ||
+      confirmpasswordRef.current.value === ""
+    ) {
       //setError('Please Fill all the field')
-      return
+      return;
     }
 
-    if(!(passwordRef.current.value === confirmpasswordRef.current.value)){
-      console.log(passwordRef.current.value + " " + confirmpasswordRef.current.value);
+    if (!(passwordRef.current.value === confirmpasswordRef.current.value)) {
+      console.log(
+        passwordRef.current.value + " " + confirmpasswordRef.current.value
+      );
       //setError('Password Missmatch')
-      return
+      return;
     }
 
-    const article = {
-      name  : nameref.current.value,
-      email : emailRef.current.value,
-      password : passwordRef.current.value
-     };
+    const value = {
+      name: nameref.current.value,
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    };
 
-     console.log(article);
+    dispatch(userRegister(value));
 
-    axios.post('http://localhost:5000/register', article)
-        .then(response => {
-           //setError(response.data.message);
-           console.log(response.data.message);
-           setTimeout(() => {
-            window.location.href = "/login";
-          }, 500);
-        })
-        .catch(error => {
-          //setError(error.data.message);
-          console.error('There was an error!', error);
-      });
+    console.log(value);
   }
 
   async function handleSubmit(e) {
@@ -102,7 +99,9 @@ const SignupUser = () =>  {
                 <div className="d-flex flex-row align-items-center justify-content-between">
                   <a href="/login">Login</a>
 
-                  <button type="submit" className="btn btn-primary">Create Account</button>
+                  <button type="submit" className="btn btn-primary">
+                    Create Account
+                  </button>
                 </div>
               </form>
             </div>
@@ -111,6 +110,6 @@ const SignupUser = () =>  {
       </div>
     </div>
   );
-}
+};
 
 export default SignupUser;
