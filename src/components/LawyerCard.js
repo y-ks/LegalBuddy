@@ -1,6 +1,6 @@
 import { Card } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { showModal } from "../store/modalSlice";
+import { showModal } from "../redux/features/modalSlice";
 import Rating from "./Rating";
 
 const LawyerCard = (props) => {

@@ -3,6 +3,7 @@ import "./login.css";
 import { useDispatch } from "react-redux";
 import { useRef } from "react";
 import { userLogin } from "../redux/features/userAction";
+import { lawyerLogin } from "../redux/features/lawyerAction";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -12,15 +13,13 @@ const Login = () => {
   async function handleSubmit(e) {
     console.log(e);
     e.preventDefault();
-    console.log(emailRef.current.value + " " + passwordRef.current.value);
-
     const value = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
     };
-
-    console.log(value);
-    dispatch(userLogin(value));
+    document.getElementById("user").checked
+      ? dispatch(userLogin(value))
+      : dispatch(lawyerLogin(value));
   }
 
   return (
@@ -45,16 +44,26 @@ const Login = () => {
                 ref={passwordRef}
               />
             </div>
-            <a href="/signuplawyer" class="link">
+
+            <div>
+              <label for="user" className="l-radio">
+                <input type="radio" id="user" name="userType" />
+                <span>User</span>
+              </label>
+              <label for="lawyer" className="l-radio">
+                <input type="radio" id="lawyer" name="userType" />
+                <span>Lawyer</span>
+              </label>
+            </div>
+            <a href="/signuplawyer" className="link">
               Signup as Lawyer?
+            </a>
+            <br />
+            <a href="/signuplawyer" className="link">
+              Signup as user?
             </a>
           </div>
           <div class="action">
-            <button>
-              <a href="/signup" class="link">
-                Register
-              </a>
-            </button>
             <button type="submit">Sign in</button>
           </div>
         </form>

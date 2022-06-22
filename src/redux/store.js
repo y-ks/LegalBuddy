@@ -1,5 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
+import categoryReducer from "./features/categorySlice";
+import modalReducer from "./features/modalSlice";
 
-export default configureStore({
-  reducer: {},
+export const store = configureStore({
+  reducer: { category: categoryReducer, modalDialog: modalReducer },
 });

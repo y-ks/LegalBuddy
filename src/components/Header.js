@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { setCategory } from "../store/categorySlice";
+import { setCategory } from "../redux/features/categorySlice";
 import Lawyers from "./../data/lawyers";
 
 const Header = () => {

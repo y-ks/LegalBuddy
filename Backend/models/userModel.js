@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const userSchema = mongoose.Schema(
@@ -33,6 +32,7 @@ const userSchema = mongoose.Schema(
         }
       },
     },
+    userType: { type: String, default: "user" },
     token: [
       {
         token: {

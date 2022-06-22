@@ -7,7 +7,6 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email, password });
-    console.log(user);
     if (user) {
       res.send(user);
     } else {
@@ -21,7 +20,6 @@ router.post("/login", async (req, res) => {
 router.post("/register", async (req, res) => {
   const { email } = req.body;
   const userExist = await User.findOne({ email });
-  console.log(userExist);
   if (userExist) {
     res.status(409).json({ message: "User already exist" });
     return;

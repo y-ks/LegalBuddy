@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { hideModal } from "../store/modalSlice";
+import { hideModal } from "../redux/features/modalSlice";
 import Lawyers from "./../data/lawyers";
 import LawyerCard from "./LawyerCard";
 import LawyerModal from "./LawyerModal";
