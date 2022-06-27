@@ -1,8 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import "./signupuser.css";
-import axios from "axios";
 import { userRegister } from "../redux/features/userAction";
 
 const SignupUser = () => {

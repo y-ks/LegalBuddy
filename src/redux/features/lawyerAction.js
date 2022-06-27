@@ -6,8 +6,8 @@ export const lawyerLogin = (reqObj) => async (dispatch) => {
 
   try {
     const response = await axios.post("/api/lawyers/login", reqObj);
-    localStorage.setItem("userID", JSON.stringify(response.data._id));
-    localStorage.setItem("userName", JSON.stringify(response.data.name));
+    localStorage.setItem("name", JSON.stringify(response.data.name));
+    localStorage.setItem("Id", JSON.stringify(response.data._id));
     message.success("Login success");
     setTimeout(() => {
       window.location.href = "/";

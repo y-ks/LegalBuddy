@@ -59,7 +59,7 @@ const Login = () => {
               Signup as Lawyer?
             </a>
             <br />
-            <a href="/signuplawyer" className="link">
+            <a href="/signup" className="link">
               Signup as user?
             </a>
           </div>

@@ -6,5 +6,6 @@ app.use(express.json());
 
 app.use("/api/users", require("./routes/usersRoute"));
 app.use("/api/lawyers", require("./routes/lawyersRoute"));
+app.use("/api/admin", require("./routes/adminRoute"));
 app.get("/", (req, res) => res.send("Hello World!"));
 app.listen(port, () => console.log("server started"));

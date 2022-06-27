@@ -6,9 +6,10 @@ export const userLogin = (reqObj) => async (dispatch) => {
 
   try {
     const response = await axios.post("/api/users/login", reqObj);
-    localStorage.setItem("userID", JSON.stringify(response.data._id));
-    localStorage.setItem("userName", JSON.stringify(response.data.name));
+    localStorage.setItem("name", JSON.stringify(response.data.name));
+    localStorage.setItem("Id", JSON.stringify(response.data._id));
     message.success("Login success");
+
     setTimeout(() => {
       window.location.href = "/";
     }, 500);
@@ -24,7 +25,7 @@ export const userRegister = (reqObj) => async (dispatch) => {
   dispatch({ type: "LOADING", payload: true });
 
   try {
-    const response = await axios.post("api/users/register", reqObj);
+    await axios.post("api/users/register", reqObj);
     message.success("Registration success");
     setTimeout(() => {
       window.location.href = "/login";

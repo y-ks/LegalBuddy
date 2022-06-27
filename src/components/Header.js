@@ -3,6 +3,7 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { setCategory } from "../redux/features/categorySlice";
 import Lawyers from "./../data/lawyers";
+import { MenuButton } from "./MenuButton";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -15,9 +16,6 @@ const Header = () => {
     <header>
       <Navbar bg="dark" variant="dark" expand="lg">
         <Container>
-          <Navbar.Brand>
-            <span>{localStorage.getItem("userName")}</span>
-          </Navbar.Brand>
           <Navbar.Brand onClick={() => dispatch(setCategory("all"))}>
             <img
               className="logo"
@@ -40,6 +38,7 @@ const Header = () => {
             </Nav>
           </Navbar.Collapse>
         </Container>
+        <MenuButton />;
       </Navbar>
     </header>
   );

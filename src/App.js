@@ -1,4 +1,6 @@
 import React from "react";
+import "antd/dist/antd.css";
+import "antd/dist/antd.less";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
