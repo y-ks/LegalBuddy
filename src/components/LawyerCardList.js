@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
+import { fetchLawyers } from "../redux/features/lawyerSlice";
 import { hideModal } from "../redux/features/modalSlice";
 import Lawyers from "./../data/lawyers";
 import LawyerCard from "./LawyerCard";
@@ -10,7 +11,12 @@ const LawyerCardList = () => {
   const category = useSelector((state) => state.category.value);
   const modalShow = useSelector((state) => state.modalDialog.isModalShow);
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchLawyers());
+  }, [dispatch]);
+
   let filteredLawyers = [];
+  //const Lawyers = dispatch(getAllLawyers());
   if (category === "all") {
     filteredLawyers = Lawyers;
   } else {

@@ -34,4 +34,13 @@ router.post("/register", async (req, res) => {
   }
 });
 
+router.get("/getalllawyers", async (req, res) => {
+  try {
+    const lawyer = await Lawyer.find();
+    res.send(lawyer);
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+});
+
 module.exports = router;
