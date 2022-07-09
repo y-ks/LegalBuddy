@@ -5,7 +5,6 @@ export const fetchLawyers = createAsyncThunk(
   "lawyer/fetchLawyers",
   async () => {
     const response = await axios.get("/api/lawyers/getalllawyers");
-    console.log(response.data);
     return response.data;
   }
 );

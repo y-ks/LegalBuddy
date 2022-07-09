@@ -1,19 +1,39 @@
-import { message } from "antd";
 import React from "react";
 import { NavDropdown, Nav } from "react-bootstrap";
 
 export const MenuButton = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
   return (
     <Nav>
       <NavDropdown
         id="nav-dropdown-dark-example"
-        title={` ${JSON.parse(localStorage.getItem("name"))} `}
+        title={` ${user.name} `}
         menuVariant="dark"
         drop="start"
       >
-        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Action</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">My Lawyers</NavDropdown.Item>
+        {user.userType === "user" ? (
+          <NavDropdown.Item href="/mybookings">My Bookings</NavDropdown.Item>
+        ) : null}
+
+        {user.userType === "admin" ? (
+          <div>
+            <NavDropdown.Item href="/mybookings">View Lawyers</NavDropdown.Item>
+            <NavDropdown.Item href="/mybookings">View Users</NavDropdown.Item>
+            <NavDropdown.Item href="/mybookings">
+              Verify Lawyers
+            </NavDropdown.Item>
+          </div>
+        ) : null}
+
+        {user.userType === "lawyer" ? (
+          <div>
+            <NavDropdown.Item href="/mybookings">
+              View bookings
+            </NavDropdown.Item>
+            <NavDropdown.Item href="/mybookings">Modify Data</NavDropdown.Item>
+          </div>
+        ) : null}
+
         <NavDropdown.Divider />
         <NavDropdown.Item
           onClick={() => {

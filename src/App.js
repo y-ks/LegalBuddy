@@ -6,12 +6,14 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/SignupUser";
 import SignupLawyer from "./pages/SignupLawyer";
+import Mybookings from "./pages/Mybookings";
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
         <ProtectedRoute exact path="/" component={Home} />
+        <ProtectedRoute exact path="/mybookings" component={Mybookings} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/signuplawyer" component={SignupLawyer} />
@@ -21,11 +23,18 @@ function App() {
 }
 
 export function ProtectedRoute(props) {
-  if (localStorage.getItem("name")) {
+  if (localStorage.getItem("user")) {
     return <Route {...props} />;
   } else {
     return <Redirect to="/login" />;
   }
 }
 
+export function AdminRoute(props) {
+  if (localStorage.getItem("name")) {
+    return <Route {...props} />;
+  } else {
+    return <Redirect to="/login" />;
+  }
+}
 export default App;
