@@ -18,15 +18,13 @@ router.delete("/removeUser/:id", async (req, res) => {
   }
 });
 
-router.delete("/removeLawyer/:id", async (req, res) => {
-  const _id = req.params.id;
+router.post("/removeLawyer", async (req, res) => {
+  const _id = req.body.lawyerid;
   try {
-    await Booking.findOneAndDelete({ lawyer: { _id } });
     const lawyer = await Lawyer.findOneAndDelete({ _id });
     if (!lawyer) {
       return res.status(404).send();
     }
-    res.send("Lawyer removed");
   } catch (error) {
     return res.status(500).json(error);
   }

@@ -11,6 +11,7 @@ export const fetchLawyers = createAsyncThunk(
 
 const lawyerSlice = createSlice({
   name: "lawyer",
+  loading: false,
   initialState: {
     lawyers: [],
     status: null,
@@ -19,13 +20,16 @@ const lawyerSlice = createSlice({
   extraReducers: {
     [fetchLawyers.pending]: (state, action) => {
       state.status = "loading";
+      state.loading = true;
     },
     [fetchLawyers.fulfilled]: (state, { payload }) => {
       state.lawyers = payload;
       state.status = "success";
+      state.loading = false;
     },
     [fetchLawyers.rejected]: (state, action) => {
       state.status = "failed";
+      state.loading = false;
     },
   },
 });

@@ -16,7 +16,6 @@ const LawyerCardList = () => {
   }, [dispatch]);
 
   let filteredLawyers = [];
-  //const Lawyers = dispatch(getAllLawyers());
   if (category === "all") {
     filteredLawyers = Lawyers;
   } else {

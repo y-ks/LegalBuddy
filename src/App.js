@@ -7,11 +7,13 @@ import Login from "./pages/Login";
 import Signup from "./pages/SignupUser";
 import SignupLawyer from "./pages/SignupLawyer";
 import Mybookings from "./pages/Mybookings";
+import LawyersList from "./pages/LawyersList";
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
+        <AdminRoute exact path="/lawyerslist" component={LawyersList} />
         <ProtectedRoute exact path="/" component={Home} />
         <ProtectedRoute exact path="/mybookings" component={Mybookings} />
         <Route path="/login" component={Login} />
@@ -31,7 +33,7 @@ export function ProtectedRoute(props) {
 }
 
 export function AdminRoute(props) {
-  if (localStorage.getItem("name")) {
+  if (JSON.parse(localStorage.getItem("user")).userType === "admin") {
     return <Route {...props} />;
   } else {
     return <Redirect to="/login" />;
