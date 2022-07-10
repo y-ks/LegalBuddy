@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Table from "../components/Table";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/Header";
 import { fetchLawyers } from "../redux/features/lawyerSlice";
+import NavbarCustom from "../components/NavbarCustom";
 
 function LawyersList() {
   const lawyer = useSelector((state) => state.getalllawyers);
@@ -14,7 +15,7 @@ function LawyersList() {
 
   return (
     <div>
-      <Header />
+      <NavbarCustom />
       {!lawyer.loading && lawyer.lawyers.length ? (
         <Table lawyer={lawyer.lawyers} />
       ) : null}

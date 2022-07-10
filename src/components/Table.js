@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { message, Popconfirm } from "antd";
 import { Button } from "react-bootstrap";
+import { DeleteOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { removeLawyer } from "../redux/features/adminAction";
 import { deleteLawyer } from "../redux/features/lawyerSlice";
@@ -37,16 +39,17 @@ function Table(props) {
               {lawyer.email}
             </div>
             <div className="col col-4" data-label="Payment Status">
-              <Button
-                variant="outline-danger"
-                onClick={() => {
-                  dispatch(deleteLawyer({ id: lawyer._id }));
+              <Popconfirm
+                title="Are you sure to remove this lawyer?"
+                onConfirm={() => {
                   dispatch(removeLawyer({ lawyerid: lawyer._id }));
+                  dispatch(deleteLawyer({ id: lawyer._id }));
                 }}
+                okText="Yes"
+                cancelText="No"
               >
-                {" "}
-                Remove
-              </Button>
+                <Button variant="outline-danger"> Remove</Button>
+              </Popconfirm>
             </div>
           </li>
         ))}
