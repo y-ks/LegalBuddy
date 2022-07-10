@@ -16,7 +16,13 @@ const lawyerSlice = createSlice({
     lawyers: [],
     status: null,
   },
-  reducers: {},
+  reducers: {
+    deleteLawyer: (state, action) => {
+      state.lawyers = state.lawyers.filter(
+        (lawyer) => lawyer._id != action.payload.id
+      );
+    },
+  },
   extraReducers: {
     [fetchLawyers.pending]: (state, action) => {
       state.status = "loading";
@@ -33,5 +39,7 @@ const lawyerSlice = createSlice({
     },
   },
 });
+
+export const { deleteLawyer } = lawyerSlice.actions;
 
 export default lawyerSlice.reducer;

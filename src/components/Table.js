@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { removeLawyer } from "../redux/features/adminAction";
+import { deleteLawyer } from "../redux/features/lawyerSlice";
 import "./table.scss";
 
 function Table(props) {
@@ -39,6 +40,7 @@ function Table(props) {
               <Button
                 variant="outline-danger"
                 onClick={() => {
+                  dispatch(deleteLawyer({ id: lawyer._id }));
                   dispatch(removeLawyer({ lawyerid: lawyer._id }));
                 }}
               >
