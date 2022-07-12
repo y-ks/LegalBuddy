@@ -5,7 +5,9 @@ import Lawyers from "./../data/lawyers";
 import Rating from "./Rating";
 
 const LawyerModal = (props) => {
-  const id = useSelector((state) => state.modalDialog.lawyerId);
+  // const id = useSelector((state) => state.modalDialog.lawyerId);
+  const id = props.lawyer[0].id;
+
   const lawyer = Lawyers.find((lawyer) => lawyer.id === id);
   return (
     <Modal

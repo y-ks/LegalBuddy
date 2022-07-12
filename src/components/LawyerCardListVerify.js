@@ -26,7 +26,11 @@ const LawyerCardListVerify = () => {
   }
   return (
     <Container className="mb-4">
-      <LawyerModal show={modalShow} onHide={() => dispatch(hideModal())} />
+      <LawyerModal
+        lawyer={filteredLawyers}
+        show={modalShow}
+        onHide={() => dispatch(hideModal())}
+      />
       <h1 className="text-capitalize mt-3 mb-4">{category} Lawyers</h1>
       <Row xs={1} sm={2} md={3} lg={4} className="g-4">
         {filteredLawyers.map(

@@ -10,7 +10,6 @@ import LawyerModal from "./LawyerModal";
 const LawyerCardList = () => {
   const category = useSelector((state) => state.category.value);
   const modalShow = useSelector((state) => state.modalDialog.isModalShow);
-  const user = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchLawyers());
@@ -26,10 +25,14 @@ const LawyerCardList = () => {
   }
   return (
     <Container className="mb-4">
-      <LawyerModal show={modalShow} onHide={() => dispatch(hideModal())} />
+      <LawyerModal
+        lawyer={filteredLawyers}
+        show={modalShow}
+        onHide={() => dispatch(hideModal())}
+      />
       <h1 className="text-capitalize mt-3 mb-4">{category} Lawyers</h1>
       <Row xs={1} sm={2} md={3} lg={4} className="g-4">
-        {filteredLawyers.map((lawyer) => (
+        {filteredLawyers.map((lawyer, index) => (
           <Col key={lawyer.id}>
             <LawyerCard lawyer={lawyer} />
           </Col>
