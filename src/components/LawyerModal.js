@@ -63,7 +63,7 @@ const LawyerModal = (props) => {
           // style={{ color: "black", background: "white" }}
           onClick={props.onHide}
         >
-          Contact
+          {lawyer.isVerified ? "Contact" : "Verify"}
         </Button>
         <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>

@@ -9,6 +9,7 @@ import SignupLawyer from "./pages/SignupLawyer";
 import Mybookings from "./pages/Mybookings";
 import LawyersList from "./pages/LawyersList";
 import UsersList from "./pages/UsersList";
+import VerifyLawyers from "./pages/VerifyLawyers";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Switch>
         <AdminRoute exact path="/lawyerslist" component={LawyersList} />
         <AdminRoute exact path="/userslist" component={UsersList} />
+        <AdminRoute exact path="/verifylawyers" component={VerifyLawyers} />
         <ProtectedRoute exact path="/" component={Home} />
         <ProtectedRoute exact path="/mybookings" component={Mybookings} />
         <Route path="/login" component={Login} />
