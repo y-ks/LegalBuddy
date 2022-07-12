@@ -1,13 +1,13 @@
 import React from "react";
 import { Button, Image, Modal } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import Lawyers from "./../data/lawyers";
+// import Lawyers from "./../data/lawyers";
 import Rating from "./Rating";
 
 const LawyerModal = (props) => {
   // const id = useSelector((state) => state.modalDialog.lawyerId);
   const id = props.lawyer[0].id;
-
+  const Lawyers = useSelector((state) => state.getalllawyers.lawyers);
   const lawyer = Lawyers.find((lawyer) => lawyer.id === id);
   return (
     <Modal
