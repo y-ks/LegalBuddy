@@ -4,10 +4,9 @@ const User = require("../models/userModel");
 const Lawyer = require("../models/lawyerModel");
 const Booking = require("../models/bookingModel");
 
-router.delete("/removeUser/:id", async (req, res) => {
-  const _id = req.params.id;
+router.post("/removeUser", async (req, res) => {
+  const _id = req.body.userid;
   try {
-    await Booking.findOneAndDelete({ user: { _id } });
     const user = await User.findOneAndDelete({ _id });
     if (!user) {
       return res.status(404).send();

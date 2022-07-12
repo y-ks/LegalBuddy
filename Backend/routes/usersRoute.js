@@ -34,4 +34,13 @@ router.post("/register", async (req, res) => {
   }
 });
 
+router.get("/getallusers", async (req, res) => {
+  try {
+    const user = await User.find();
+    res.send(user);
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+});
+
 module.exports = router;

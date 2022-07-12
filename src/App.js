@@ -8,12 +8,14 @@ import Signup from "./pages/SignupUser";
 import SignupLawyer from "./pages/SignupLawyer";
 import Mybookings from "./pages/Mybookings";
 import LawyersList from "./pages/LawyersList";
+import UsersList from "./pages/UsersList";
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
         <AdminRoute exact path="/lawyerslist" component={LawyersList} />
+        <AdminRoute exact path="/userslist" component={UsersList} />
         <ProtectedRoute exact path="/" component={Home} />
         <ProtectedRoute exact path="/mybookings" component={Mybookings} />
         <Route path="/login" component={Login} />
