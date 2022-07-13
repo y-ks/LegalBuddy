@@ -18,15 +18,10 @@ const SignupUser = () => {
       passwordRef.current.value === "" ||
       confirmpasswordRef.current.value === ""
     ) {
-      //setError('Please Fill all the field')
       return;
     }
 
     if (!(passwordRef.current.value === confirmpasswordRef.current.value)) {
-      console.log(
-        passwordRef.current.value + " " + confirmpasswordRef.current.value
-      );
-      //setError('Password Missmatch')
       return;
     }
 
@@ -37,8 +32,6 @@ const SignupUser = () => {
     };
 
     dispatch(userRegister(value));
-
-    console.log(value);
   }
 
   async function handleSubmit(e) {

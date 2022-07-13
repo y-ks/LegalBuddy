@@ -20,7 +20,7 @@ export const lawyerLogin = (reqObj) => async (dispatch) => {
   }
 };
 
-export const userRegister = (reqObj) => async (dispatch) => {
+export const lawyerRegister = (reqObj) => async (dispatch) => {
   dispatch({ type: "LOADING", payload: true });
 
   try {
