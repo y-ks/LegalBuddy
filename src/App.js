@@ -40,7 +40,7 @@ export function AdminRoute(props) {
   if (JSON.parse(localStorage.getItem("user")).userType === "admin") {
     return <Route {...props} />;
   } else {
-    return <Redirect to="/login" />;
+    return <Redirect to="/" />;
   }
 }
 export default App;

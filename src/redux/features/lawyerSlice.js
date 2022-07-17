@@ -17,7 +17,7 @@ const lawyerSlice = createSlice({
     status: null,
   },
   reducers: {
-    deleteLawyer: (state, action) => {
+    lawyerState: (state, action) => {
       state.lawyers = state.lawyers.filter(
         (lawyer) => lawyer._id != action.payload.id
       );
@@ -40,6 +40,6 @@ const lawyerSlice = createSlice({
   },
 });
 
-export const { deleteLawyer } = lawyerSlice.actions;
+export const { lawyerState } = lawyerSlice.actions;
 
 export default lawyerSlice.reducer;

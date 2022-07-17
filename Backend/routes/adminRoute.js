@@ -29,11 +29,22 @@ router.post("/removeLawyer", async (req, res) => {
   }
 });
 
-router.post("/approveLawyer", async (req, res) => {
+router.post("/verifyLawyer", async (req, res) => {
   try {
-    const newLawyer = new Lawyer(req.body);
-    await newLawyer.save();
-    res.send("Lawyer registered Succesfully");
+    const lawyer = await Lawyer.findOne({ _id: req.body.lawyerid });
+    lawyer.isVerified = true;
+    console.log(lawyer);
+    await lawyer.save();
+    res.send("Verified Succesfully");
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+});
+
+router.post("/rejectLawyer", async (req, res) => {
+  try {
+    const lawyer = await Lawyer.findOneAndDelete({ _id: req.body.lawyerid });
+    res.send("Removed Succesfully");
   } catch (error) {
     return res.status(400).json(error);
   }

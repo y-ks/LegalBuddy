@@ -1,12 +1,15 @@
 import React from "react";
 import { Button, Image, Modal } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { Popconfirm } from "antd";
+import { useSelector, useDispatch } from "react-redux";
+import { verifyLawyer, rejectLawyer } from "../redux/features/adminAction";
 // import Lawyers from "./../data/lawyers";
 import Rating from "./Rating";
 
-const LawyerModal = (props) => {
+function LawyerModalVerify(props) {
   const id = useSelector((state) => state.modalDialog.lawyerId);
   const Lawyers = useSelector((state) => state.getalllawyers.lawyers);
+  const dispatch = useDispatch();
   // let id = props.lawyer[0]._id;
   if (id) {
     const lawyer = Lawyers.find((lawyer) => lawyer._id === id);
@@ -62,17 +65,36 @@ const LawyerModal = (props) => {
           </p>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            // style={{ color: "black", background: "white" }}
-            onClick={props.onHide}
+          <Popconfirm
+            title="Are you sure to verify this lawyer?"
+            onConfirm={() => {
+              dispatch(verifyLawyer({ lawyerid: lawyer._id }));
+            }}
+            okText="Yes"
+            cancelText="No"
           >
-            Contact
-          </Button>
-          <Button onClick={props.onHide}>Close</Button>
+            <Button
+              // style={{ color: "black", background: "white" }}
+              // onClick={props.onHide}
+              variant="success"
+            >
+              Verify
+            </Button>
+          </Popconfirm>
+          <Popconfirm
+            title="Are you sure to Reject this lawyer?"
+            onConfirm={() => {
+              dispatch(rejectLawyer({ lawyerid: lawyer._id }));
+            }}
+            okText="Yes"
+            cancelText="No"
+          >
+            <Button variant="danger">Reject</Button>
+          </Popconfirm>
         </Modal.Footer>
       </Modal>
     );
   }
-};
+}
 
-export default LawyerModal;
+export default LawyerModalVerify;

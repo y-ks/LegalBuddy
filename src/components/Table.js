@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { message, Popconfirm } from "antd";
+import { Popconfirm } from "antd";
 import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { removeLawyer } from "../redux/features/adminAction";
-import { deleteLawyer } from "../redux/features/lawyerSlice";
+import { lawyerState } from "../redux/features/lawyerSlice";
 import "./table.scss";
 
 function Table(props) {
@@ -26,32 +26,35 @@ function Table(props) {
           <div className="col col-3">Email Address</div>
           <div className="col col-4">Action</div>
         </li>
-        {totalLawyers.map((lawyer, index) => (
-          <li className="table-row" key={index}>
-            <div className="col col-1" data-label="Job Id">
-              {index + 1}
-            </div>
-            <div className="col col-2" data-label="Customer Name">
-              {lawyer.name}
-            </div>
-            <div className="col col-3" data-label="Amount">
-              {lawyer.email}
-            </div>
-            <div className="col col-4" data-label="Payment Status">
-              <Popconfirm
-                title="Are you sure to remove this lawyer?"
-                onConfirm={() => {
-                  dispatch(removeLawyer({ lawyerid: lawyer._id }));
-                  dispatch(deleteLawyer({ id: lawyer._id }));
-                }}
-                okText="Yes"
-                cancelText="No"
-              >
-                <Button variant="outline-danger"> Remove</Button>
-              </Popconfirm>
-            </div>
-          </li>
-        ))}
+        {totalLawyers.map(
+          (lawyer, index) =>
+            lawyer.isVerified === true && (
+              <li className="table-row" key={index}>
+                <div className="col col-1" data-label="Job Id">
+                  {index + 1}
+                </div>
+                <div className="col col-2" data-label="Customer Name">
+                  {lawyer.name}
+                </div>
+                <div className="col col-3" data-label="Amount">
+                  {lawyer.email}
+                </div>
+                <div className="col col-4" data-label="Payment Status">
+                  <Popconfirm
+                    title="Are you sure to remove this lawyer?"
+                    onConfirm={() => {
+                      dispatch(removeLawyer({ lawyerid: lawyer._id }));
+                      dispatch(lawyerState({ id: lawyer._id }));
+                    }}
+                    okText="Yes"
+                    cancelText="No"
+                  >
+                    <Button variant="outline-danger"> Remove</Button>
+                  </Popconfirm>
+                </div>
+              </li>
+            )
+        )}
       </ul>
     </div>
   );

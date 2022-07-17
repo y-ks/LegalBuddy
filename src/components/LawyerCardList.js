@@ -27,6 +27,7 @@ const LawyerCardList = () => {
       if (lawyer.category === category) filteredLawyers.push(lawyer);
     });
   }
+
   return (
     !lawyer.loading &&
     lawyer.lawyers.length && (
@@ -38,11 +39,14 @@ const LawyerCardList = () => {
         />
         <h1 className="text-capitalize mt-3 mb-4">{category} Lawyers</h1>
         <Row xs={1} sm={2} md={3} lg={4} className="g-4">
-          {filteredLawyers.map((lawyer) => (
-            <Col key={lawyer._id}>
-              <LawyerCard lawyer={lawyer} />
-            </Col>
-          ))}
+          {filteredLawyers.map(
+            (lawyer) =>
+              lawyer.isVerified === true && (
+                <Col key={lawyer._id}>
+                  <LawyerCard lawyer={lawyer} />
+                </Col>
+              )
+          )}
         </Row>
       </Container>
     )

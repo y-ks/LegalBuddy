@@ -6,6 +6,7 @@ import { hideModal } from "../redux/features/modalSlice";
 // import Lawyers from "./../data/lawyers";
 import LawyerCard from "./LawyerCard";
 import LawyerModal from "./LawyerModal";
+import LawyerModalVerify from "./LawyerModalVerify";
 
 const LawyerCardListVerify = () => {
   const category = useSelector((state) => state.category.value);
@@ -30,7 +31,7 @@ const LawyerCardListVerify = () => {
     !lawyer.loading &&
     lawyer.lawyers.length && (
       <Container className="mb-4">
-        <LawyerModal
+        <LawyerModalVerify
           lawyer={filteredLawyers}
           show={modalShow}
           onHide={() => dispatch(hideModal())}
@@ -40,7 +41,7 @@ const LawyerCardListVerify = () => {
           {filteredLawyers.map(
             (lawyer) =>
               lawyer.isVerified === false && (
-                <Col key={lawyer.id}>
+                <Col key={lawyer._id}>
                   <LawyerCard lawyer={lawyer} />
                 </Col>
               )
