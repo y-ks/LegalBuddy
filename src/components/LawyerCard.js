@@ -8,7 +8,7 @@ const LawyerCard = (props) => {
   const lawyer = props.lawyer;
   return (
     <>
-      <Card onClick={() => dispatch(showModal(lawyer.id))}>
+      <Card onClick={() => dispatch(showModal(lawyer._id))}>
         <Card.Img
           variant="top"
           src={`${process.env.PUBLIC_URL}/lawyers/${lawyer.img_src}.jpg`}
