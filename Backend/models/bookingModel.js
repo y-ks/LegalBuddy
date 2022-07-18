@@ -2,12 +2,18 @@ const mongoose = require("mongoose");
 
 const bookingSchema = new mongoose.Schema(
   {
-    lawyer: { type: mongoose.Schema.Types.ObjectId, ref: "Lawyer" },
-    user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-    userName: { type: String },
+    lawyerid: { type: mongoose.Schema.Types.ObjectId, ref: "Lawyer" },
+    userid: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     bookedTimeSlots: { from: { type: String }, to: { type: String } },
     isPaid: { type: Boolean, default: false },
-    date: { type: Date },
+    phone: { type: String },
+    email: { type: String },
+    address: { type: String },
+    description: {
+      type: String,
+      required: true,
+    },
+    date: { type: String },
   },
   { timestamps: true }
 );

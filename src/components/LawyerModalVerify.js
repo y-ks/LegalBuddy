@@ -3,8 +3,10 @@ import { Button, Image, Modal } from "react-bootstrap";
 import { Popconfirm } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { verifyLawyer, rejectLawyer } from "../redux/features/adminAction";
+import "./lawyermodal.css";
 // import Lawyers from "./../data/lawyers";
 import Rating from "./Rating";
+import { lawyerState } from "../redux/features/lawyerSlice";
 
 function LawyerModalVerify(props) {
   const id = useSelector((state) => state.modalDialog.lawyerId);
@@ -63,6 +65,23 @@ function LawyerModalVerify(props) {
             <strong>Languages: </strong>
             {lawyer.languages.join(", ")}
           </p>
+          <p>
+            <strong>Find Me Here</strong>
+          </p>
+          <div className="mapouter">
+            <div className="gmap_canvas">
+              <iframe
+                width="800"
+                height="300"
+                id="gmap_canvas"
+                src="https://maps.google.com/maps?q=27.71743421942345, 85.34668193633858&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                frameborder="0"
+                scrolling="no"
+                marginheight="0"
+                marginwidth="0"
+              ></iframe>
+            </div>
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <Popconfirm
@@ -85,6 +104,7 @@ function LawyerModalVerify(props) {
             title="Are you sure to Reject this lawyer?"
             onConfirm={() => {
               dispatch(rejectLawyer({ lawyerid: lawyer._id }));
+              // dispatch(lawyerState({ id: lawyer._id }));
             }}
             okText="Yes"
             cancelText="No"

@@ -3,6 +3,7 @@ import { Button, Image, Modal } from "react-bootstrap";
 import { useSelector } from "react-redux";
 // import Lawyers from "./../data/lawyers";
 import Rating from "./Rating";
+import "./lawyermodal.css";
 
 const LawyerModal = (props) => {
   const id = useSelector((state) => state.modalDialog.lawyerId);
@@ -60,6 +61,23 @@ const LawyerModal = (props) => {
             <strong>Languages: </strong>
             {lawyer.languages.join(", ")}
           </p>
+          <p>
+            <strong>Find Me Here</strong>
+          </p>
+          <div className="mapouter">
+            <div className="gmap_canvas">
+              <iframe
+                width="800"
+                height="300"
+                id="gmap_canvas"
+                src="https://maps.google.com/maps?q=27.71743421942345, 85.34668193633858&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                frameborder="0"
+                scrolling="no"
+                marginheight="0"
+                marginwidth="0"
+              ></iframe>
+            </div>
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <Button

@@ -77,6 +77,10 @@ const userSchema = mongoose.Schema(
         }
       },
     },
+    location: {
+      lattitude: { type: Number },
+      longitude: { type: Number },
+    },
     languages: [],
     token: [
       {
