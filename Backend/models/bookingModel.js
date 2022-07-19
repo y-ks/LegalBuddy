@@ -4,7 +4,6 @@ const bookingSchema = new mongoose.Schema(
   {
     lawyerid: { type: mongoose.Schema.Types.ObjectId, ref: "Lawyer" },
     userid: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-    bookedTimeSlots: { from: { type: String }, to: { type: String } },
     isPaid: { type: Boolean, default: false },
     phone: { type: String },
     email: { type: String },
@@ -14,6 +13,7 @@ const bookingSchema = new mongoose.Schema(
       required: true,
     },
     date: { type: String },
+    time: { type: String },
   },
   { timestamps: true }
 );

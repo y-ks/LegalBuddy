@@ -10,6 +10,7 @@ import Mybookings from "./pages/Mybookings";
 import LawyersList from "./pages/LawyersList";
 import UsersList from "./pages/UsersList";
 import VerifyLawyers from "./pages/VerifyLawyers";
+import BookingPage from "./pages/BookingPage";
 
 function App() {
   return (
@@ -20,6 +21,11 @@ function App() {
         <AdminRoute exact path="/verifylawyers" component={VerifyLawyers} />
         <ProtectedRoute exact path="/" component={Home} />
         <ProtectedRoute exact path="/mybookings" component={Mybookings} />
+        <ProtectedRoute
+          exact
+          path="/bookingpage/:lawyerid"
+          component={BookingPage}
+        />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/signuplawyer" component={SignupLawyer} />
