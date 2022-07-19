@@ -83,6 +83,7 @@ const LawyerModal = (props) => {
           <Button
             // style={{ color: "black", background: "white" }}
             onClick={props.onHide}
+            href={`/bookingpage/${lawyer._id}`}
           >
             Contact
           </Button>

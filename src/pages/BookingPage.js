@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import "./bookingpage.css";
 import { bookingRequest } from "../redux/features/bookingAction";
 import { fetchBookings } from "../redux/features/bookingSlice";
+import NavbarCustom from "../components/NavbarCustom";
 
 function BookingPage(props) {
   const dispatch = useDispatch();
@@ -14,20 +15,32 @@ function BookingPage(props) {
     dispatch(fetchBookings());
   }, [dispatch]);
 
+  const bookings = useSelector((state) => state.getallbookings);
   const lawyerid = props.match.params.lawyerid;
   const userID = JSON.parse(localStorage.getItem("user"));
   const [date, setDate] = useState();
   const [time, setTime] = useState();
+  const [lawyerbooking, setlawyerbooking] = useState();
+  const [availableTime, setavailableTime] = useState();
   const dateRef = useRef();
   const emailRef = useRef();
   const phoneRef = useRef();
   const addressRef = useRef();
   const descriptionRef = useRef();
   const timeRef = useRef();
+
   const onDateChange = () => {
     const d = dateRef.current.value;
     setDate(d);
+
+    const lawyerBook = bookings.bookings.filter(
+      (book) => book.lawyerid === lawyerid && book.date === d
+    );
+
+    setlawyerbooking(lawyerBook);
   };
+
+  console.log(lawyerbooking);
 
   const onTimeChange = () => {
     const t = timeRef.current.value;
@@ -50,87 +63,110 @@ function BookingPage(props) {
     dispatch(bookingRequest(booking));
   };
   return (
-    <div className="formclass">
-      <Form autoComplete="off" onSubmit={handleBookingpage}>
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGridEmail">
-            <Form.Label>Email</Form.Label>
+    <>
+      <NavbarCustom />
+      <div className="formclass sketchy">
+        <Form autoComplete="off" onSubmit={handleBookingpage}>
+          <Row className="mb-3">
+            <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                autoComplete="off"
+                ref={emailRef}
+                required
+              />
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridPassword">
+              <Form.Label>PhoneNumber</Form.Label>
+              <Form.Control
+                type="string"
+                placeholder="Phone number"
+                autoComplete="off"
+                ref={phoneRef}
+                required
+              />
+            </Form.Group>
+          </Row>
+
+          <Form.Group className="mb-3" controlId="formGridAddress1">
+            <Form.Label>Address</Form.Label>
             <Form.Control
-              type="email"
-              placeholder="Enter email"
+              placeholder="Nakhipot, Lalitpur"
+              ref={addressRef}
+              required
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formGridAddress2">
+            <Form.Label>Case Description</Form.Label>
+            <Form.Control
+              placeholder="Case Description"
+              as="textarea"
+              rows={3}
               autoComplete="off"
-              ref={emailRef}
+              ref={descriptionRef}
               required
             />
           </Form.Group>
 
-          <Form.Group as={Col} controlId="formGridPassword">
-            <Form.Label>PhoneNumber</Form.Label>
-            <Form.Control
-              type="string"
-              placeholder="Phone number"
-              autoComplete="off"
-              ref={phoneRef}
-              required
-            />
-          </Form.Group>
-        </Row>
+          <Row className="mb-3">
+            <Form.Group as={Col} controlId="formGridCity">
+              <Form.Label>Date</Form.Label>
 
-        <Form.Group className="mb-3" controlId="formGridAddress1">
-          <Form.Label>Address</Form.Label>
-          <Form.Control
-            placeholder="Nakhipot, Lalitpur"
-            ref={addressRef}
-            required
-          />
-        </Form.Group>
+              <Form.Control
+                type="date"
+                placeholder="Select date"
+                ref={dateRef}
+                onChange={onDateChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group as={Col} controlId="formGridState">
+              <Form.Label>Select Time</Form.Label>
+              <Form.Select
+                defaultValue="....."
+                ref={timeRef}
+                onChange={onTimeChange}
+                required
+              >
+                <option disabled>.....</option>
+                {lawyerbooking &&
+                lawyerbooking.filter((book) => book.time === "10-11").length ? (
+                  <option disabled>10-11</option>
+                ) : (
+                  <option>10-11</option>
+                )}
+                {lawyerbooking &&
+                lawyerbooking.filter((book) => book.time === "11-12").length ? (
+                  <option disabled>11-12</option>
+                ) : (
+                  <option>11-12</option>
+                )}
+                {lawyerbooking &&
+                lawyerbooking.filter((book) => book.time === "13-14").length ? (
+                  <option disabled>13-14</option>
+                ) : (
+                  <option>13-14</option>
+                )}
+                {lawyerbooking &&
+                lawyerbooking.filter((book) => book.time === "14-15").length ? (
+                  <option disabled>14-15</option>
+                ) : (
+                  <option>14-15</option>
+                )}
+              </Form.Select>
+            </Form.Group>
+          </Row>
 
-        <Form.Group className="mb-3" controlId="formGridAddress2">
-          <Form.Label>Case Description</Form.Label>
-          <Form.Control
-            placeholder="Case Description"
-            as="textarea"
-            rows={3}
-            autoComplete="off"
-            ref={descriptionRef}
-            required
-          />
-        </Form.Group>
-
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGridCity">
-            <Form.Label>Date</Form.Label>
-
-            <Form.Control
-              type="date"
-              placeholder="Select date"
-              ref={dateRef}
-              onChange={onDateChange}
-              required
-            />
-          </Form.Group>
-          <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>Select Time</Form.Label>
-            <Form.Select
-              defaultValue="....."
-              ref={timeRef}
-              onChange={onTimeChange}
-              required
-            >
-              <option disabled>.....</option>
-              <option>10-11</option>
-              <option>11-12</option>
-              <option>13-14</option>
-              <option>14-15</option>
-            </Form.Select>
-          </Form.Group>
-        </Row>
-
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
-    </div>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
+      </div>
+    </>
   );
 }
 

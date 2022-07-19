@@ -8,11 +8,11 @@ import { MenuButton } from "./MenuButton";
 
 const NavbarCustom = () => {
   const dispatch = useDispatch();
-  const categories = [];
-  Lawyers.forEach((lawyer) => {
-    const category = lawyer["category"];
-    if (categories.indexOf(category) === -1) categories.push(category);
-  });
+  // const categories = [];
+  // Lawyers.forEach((lawyer) => {
+  //   const category = lawyer["category"];
+  //   if (categories.indexOf(category) === -1) categories.push(category);
+  // });
   return (
     <header>
       <Navbar bg="dark" variant="dark" expand="lg">

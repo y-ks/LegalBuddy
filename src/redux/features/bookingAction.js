@@ -7,6 +7,9 @@ export const bookingRequest = (reqObj) => async (dispatch) => {
   try {
     await axios.post("/api/bookings/booklawyer", reqObj);
     message.success("BookingRequest Sent");
+    setTimeout(() => {
+      window.location.href = "/mybookings";
+    }, 500);
     dispatch({ type: "LOADING", payload: false });
   } catch (error) {
     console.log(error);
