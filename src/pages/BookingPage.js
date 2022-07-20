@@ -8,6 +8,7 @@ import "./bookingpage.css";
 import { bookingRequest } from "../redux/features/bookingAction";
 import { fetchBookings } from "../redux/features/bookingSlice";
 import NavbarCustom from "../components/NavbarCustom";
+import { fetchLawyers } from "../redux/features/lawyerSlice";
 
 function BookingPage(props) {
   const dispatch = useDispatch();
@@ -15,12 +16,18 @@ function BookingPage(props) {
     dispatch(fetchBookings());
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(fetchLawyers());
+  }, [dispatch]);
+
   const bookings = useSelector((state) => state.getallbookings);
+  const lawyers = useSelector((state) => state.getalllawyers);
   const lawyerid = props.match.params.lawyerid;
   const userID = JSON.parse(localStorage.getItem("user"));
   const [date, setDate] = useState();
   const [time, setTime] = useState();
   const [lawyerbooking, setlawyerbooking] = useState();
+  const [lawyer, setLawyer] = useState();
   const [availableTime, setavailableTime] = useState();
   const dateRef = useRef();
   const emailRef = useRef();
@@ -37,10 +44,11 @@ function BookingPage(props) {
       (book) => book.lawyerid === lawyerid && book.date === d
     );
 
-    setlawyerbooking(lawyerBook);
-  };
+    const lawyer = lawyers.lawyers.filter((lawyer) => lawyer._id === lawyerid);
 
-  console.log(lawyerbooking);
+    setlawyerbooking(lawyerBook);
+    setLawyer(lawyer);
+  };
 
   const onTimeChange = () => {
     const t = timeRef.current.value;
@@ -55,11 +63,12 @@ function BookingPage(props) {
       address: addressRef.current.value,
       description: descriptionRef.current.value,
       date,
+      lawyername: lawyer[0].name,
+      lawyerAddress: lawyer[0].address,
       userid: userID._id,
       time: time,
       lawyerid,
     };
-
     dispatch(bookingRequest(booking));
   };
   return (
