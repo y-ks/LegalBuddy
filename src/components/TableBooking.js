@@ -5,11 +5,9 @@ import { useDispatch } from "react-redux";
 import "./table.scss";
 
 function Table(props) {
-  const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("user"));
   const booking = props.booking.filter((book) => book.userid === user._id);
-  const lawyer = props.lawyer;
-  console.log(booking);
+
   return (
     <div className="container">
       <h2>List of Bookings</h2>
@@ -35,7 +33,7 @@ function Table(props) {
               {book.isPaid ? (
                 <>
                   <Popconfirm
-                    title="Are you sure to rate this user?"
+                    title="Are you sure to rate this lawyer?"
                     // onConfirm={() => {
                     //   dispatch(removeUser({ userid: user._id }));
                     //   dispatch(deleteUser({ id: user._id }));
@@ -43,7 +41,7 @@ function Table(props) {
                     okText="Yes"
                     cancelText="No"
                   >
-                    <Button variant="outline-danger"> Rate</Button>
+                    <Button variant="warning"> Rate</Button>
                   </Popconfirm>
                 </>
               ) : (
@@ -57,7 +55,7 @@ function Table(props) {
                     okText="Yes"
                     cancelText="No"
                   >
-                    <Button variant="outline-danger"> Pay</Button>
+                    <Button variant="success"> Pay</Button>
                   </Popconfirm>
                 </>
               )}
