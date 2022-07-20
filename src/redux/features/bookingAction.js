@@ -18,6 +18,22 @@ export const bookingRequest = (reqObj) => async (dispatch) => {
   }
 };
 
+export const bookingPayment = (reqObj) => async (dispatch) => {
+  dispatch({ type: "LOADING", payload: true });
+
+  try {
+    await axios.post("/api/bookings/payment", reqObj);
+    setTimeout(() => {
+      window.location.href = "/mybookings";
+    }, 500);
+    dispatch({ type: "LOADING", payload: false });
+  } catch (error) {
+    console.log(error);
+    message.error("Something went wrong");
+    dispatch({ type: "LOADING", payload: false });
+  }
+};
+
 export const removeUser = (reqObj) => async (dispatch) => {
   dispatch({ type: "LOADING", payload: true });
 

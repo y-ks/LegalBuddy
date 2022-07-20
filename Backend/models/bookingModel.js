@@ -7,6 +7,7 @@ const bookingSchema = new mongoose.Schema(
     lawyerAddress: { type: String },
     userid: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     isPaid: { type: Boolean, default: false },
+    ivVerified: { type: Boolean, default: false },
     phone: { type: String },
     email: { type: String },
     address: { type: String },

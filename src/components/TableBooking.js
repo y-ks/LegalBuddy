@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Popconfirm } from "antd";
 import { Button } from "react-bootstrap";
+import StripeCheckout from "react-stripe-checkout";
 import { useDispatch } from "react-redux";
 import "./table.scss";
+import { bookingPayment } from "../redux/features/bookingAction";
 
 function Table(props) {
+  const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("user"));
   const booking = props.booking.filter((book) => book.userid === user._id);
 
@@ -19,7 +22,7 @@ function Table(props) {
           <div className="col col-4">Action</div>
         </li>
         {booking.map((book, index) => (
-          <li className="table-row" key={index}>
+          <li className="table-row" key={index} id={book._id}>
             <div className="col col-1" data-label="Job Id">
               {index + 1}
             </div>
@@ -30,7 +33,14 @@ function Table(props) {
               {book.lawyerAddress}
             </div>
             <div className="col col-4" data-label="Payment Status">
-              {book.isPaid ? (
+              {!book.isVerified ? (
+                <>
+                  <Button variant="secondary" disabled>
+                    {" "}
+                    Pending
+                  </Button>
+                </>
+              ) : book.isPaid ? (
                 <>
                   <Popconfirm
                     title="Are you sure to rate this lawyer?"
@@ -46,17 +56,24 @@ function Table(props) {
                 </>
               ) : (
                 <>
-                  <Popconfirm
-                    title="Are you sure to make this payment?"
-                    // onConfirm={() => {
-                    //   dispatch(removeUser({ userid: user._id }));
-                    //   dispatch(deleteUser({ id: user._id }));
-                    // }}
-                    okText="Yes"
-                    cancelText="No"
+                  <StripeCheckout
+                    token={(token) => {
+                      const reqObj = {
+                        token,
+                        bookid: book._id,
+                      };
+
+                      dispatch(bookingPayment(reqObj));
+                    }}
+                    amount={500 * 100}
+                    currency="NPR"
+                    stripeKey="pk_test_51LNcMODUEVFHIpAz8EX7bYAWrIwj9dCU3GYSz0XKNh0lXeYYP7XVBEHEadf8R0ZrmRdrV8TudaPU10HrTcuEbNuB00qShgagaa"
                   >
-                    <Button variant="success"> Pay</Button>
-                  </Popconfirm>
+                    <Button variant="success" onClick={() => {}}>
+                      {" "}
+                      Pay
+                    </Button>
+                  </StripeCheckout>
                 </>
               )}
             </div>

@@ -15,6 +15,20 @@ router.post("/booklawyer", async (req, res) => {
   }
 });
 
+router.post("/payment", async (req, res) => {
+  try {
+    const booking = await Booking.findById({ _id: req.body.bookid });
+    if (booking) {
+      booking.isPaid = true;
+      await booking.save();
+    }
+
+    res.send("Your Booking Request Succesfull");
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+});
+
 router.get("/getallbookings", async (req, res) => {
   try {
     const booking = await Booking.find();
