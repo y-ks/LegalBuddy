@@ -81,6 +81,10 @@ const userSchema = mongoose.Schema(
       lattitude: { type: Number },
       longitude: { type: Number },
     },
+    fee: {
+      type: String,
+      required: true,
+    },
     languages: [],
     token: [
       {

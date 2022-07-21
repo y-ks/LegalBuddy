@@ -6,8 +6,7 @@ export const lawyerLogin = (reqObj) => async (dispatch) => {
 
   try {
     const response = await axios.post("/api/lawyers/login", reqObj);
-    localStorage.setItem("name", JSON.stringify(response.data.name));
-    localStorage.setItem("Id", JSON.stringify(response.data._id));
+    localStorage.setItem("user", JSON.stringify(response.data));
     message.success("Login success");
     setTimeout(() => {
       window.location.href = "/";
@@ -42,11 +41,28 @@ export const rateLawyer = (reqObj) => async (dispatch) => {
   dispatch({ type: "LOADING", payload: true });
 
   try {
-    console.log("rate");
     await axios.post("api/lawyers/rateLawyer", reqObj);
     message.success("Rated successfully");
     setTimeout(() => {
       window.location.href = "/mybookings";
+    }, 500);
+
+    dispatch({ type: "LOADING", payload: false });
+  } catch (error) {
+    console.log(error.response);
+    message.error(error.response.data.message);
+    dispatch({ type: "LOADING", payload: false });
+  }
+};
+
+export const updateField = (reqObj) => async (dispatch) => {
+  dispatch({ type: "LOADING", payload: true });
+
+  try {
+    await axios.post("api/lawyers/update", reqObj);
+    message.success("Update successfully");
+    setTimeout(() => {
+      window.location.href = "/mydetails";
     }, 500);
 
     dispatch({ type: "LOADING", payload: false });

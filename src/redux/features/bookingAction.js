@@ -48,15 +48,15 @@ export const removeUser = (reqObj) => async (dispatch) => {
   }
 };
 
-export const verifyLawyer = (reqObj) => async (dispatch) => {
+export const verifyBooking = (reqObj) => async (dispatch) => {
   dispatch({ type: "LOADING", payload: true });
 
   try {
-    await axios.post("api/admin/verifyLawyer", reqObj);
-    message.success("Lawyer verified");
+    await axios.post("api/bookings/verifyBooking", reqObj);
+    message.success("Booking verified");
 
     setTimeout(() => {
-      window.location.href = "/verifylawyers";
+      window.location.href = "/mybookings";
     }, 500);
 
     dispatch({ type: "LOADING", payload: false });
@@ -67,15 +67,34 @@ export const verifyLawyer = (reqObj) => async (dispatch) => {
   }
 };
 
-export const rejectLawyer = (reqObj) => async (dispatch) => {
+export const finishBooking = (reqObj) => async (dispatch) => {
   dispatch({ type: "LOADING", payload: true });
 
   try {
-    await axios.post("api/admin/rejectLawyer", reqObj);
-    message.success("Lawyer rejected");
+    await axios.post("api/bookings/finishBooking", reqObj);
+    message.success("Completed");
 
     setTimeout(() => {
-      window.location.href = "/verifylawyers";
+      window.location.href = "/mybookings";
+    }, 500);
+
+    dispatch({ type: "LOADING", payload: false });
+  } catch (error) {
+    console.log(error.response);
+    message.error(error.response.data.message);
+    dispatch({ type: "LOADING", payload: false });
+  }
+};
+
+export const rejectBooking = (reqObj) => async (dispatch) => {
+  dispatch({ type: "LOADING", payload: true });
+
+  try {
+    await axios.post("api/bookings/rejectBooking", reqObj);
+    message.success("Booking rejected");
+
+    setTimeout(() => {
+      window.location.href = "/mybookings";
     }, 500);
     dispatch({ type: "LOADING", payload: false });
   } catch (error) {

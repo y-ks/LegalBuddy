@@ -29,6 +29,43 @@ router.post("/payment", async (req, res) => {
   }
 });
 
+router.post("/verifyBooking", async (req, res) => {
+  try {
+    const booking = await Booking.findById({ _id: req.body.bookid });
+    if (booking) {
+      booking.isVerified = true;
+      await booking.save();
+    }
+
+    res.send("Your Booking Verified Succesfull");
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+});
+
+router.post("/finishBooking", async (req, res) => {
+  try {
+    const booking = await Booking.findById({ _id: req.body.bookid });
+    if (booking) {
+      booking.isFinished = true;
+      await booking.save();
+    }
+
+    res.send("Your Booking Verified Succesfull");
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+});
+
+router.post("/rejectBooking", async (req, res) => {
+  try {
+    await Booking.findOneAndDelete({ _id: req.body.bookid });
+    res.send("Your Booking Verified Succesfull");
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+});
+
 router.get("/getallbookings", async (req, res) => {
   try {
     const booking = await Booking.find();

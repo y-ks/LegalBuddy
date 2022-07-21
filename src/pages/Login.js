@@ -24,23 +24,23 @@ const Login = () => {
 
   return (
     <div>
-      <div class="login-form">
+      <div className="login-form">
         <form onSubmit={handleSubmit}>
           <h1>Login</h1>
-          <div class="content">
-            <div class="input-field">
+          <div className="content">
+            <div className="input-field">
               <input
                 type="email"
                 placeholder="Email"
-                autocomplete="nope"
+                autoComplete="nope"
                 ref={emailRef}
               />
             </div>
-            <div class="input-field">
+            <div className="input-field">
               <input
                 type="password"
                 placeholder="Password"
-                autocomplete="new-password"
+                autoComplete="new-password"
                 ref={passwordRef}
               />
             </div>
@@ -63,7 +63,7 @@ const Login = () => {
               Signup as user?
             </a>
           </div>
-          <div class="action">
+          <div className="action">
             <button type="submit">Sign in</button>
           </div>
         </form>

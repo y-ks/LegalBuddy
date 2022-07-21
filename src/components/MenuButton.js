@@ -32,7 +32,7 @@ export const MenuButton = () => {
             <NavDropdown.Item href="/mybookings">
               View bookings
             </NavDropdown.Item>
-            <NavDropdown.Item href="/mybookings">Modify Data</NavDropdown.Item>
+            <NavDropdown.Item href="/updateField">Modify Data</NavDropdown.Item>
           </div>
         ) : null}
 

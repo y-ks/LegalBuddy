@@ -11,7 +11,7 @@ const colors = {
   orange: "#ffba5a",
   grey: "#a9a9a9",
 };
-function RateLawyer({ showmodal, lawyerid, closeModal }) {
+function RateLawyer({ showmodal, lawyerid, closeModal, bookid }) {
   const dispatch = useDispatch();
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, sethoverValue] = useState(undefined);
@@ -25,6 +25,7 @@ function RateLawyer({ showmodal, lawyerid, closeModal }) {
       const reqObj = {
         lawyerid: lawyerid,
         rating: currentValue,
+        bookid,
       };
       dispatch(rateLawyer(reqObj));
     };

@@ -5,6 +5,7 @@ const upload = multer({ dest: "../public/lawyers" });
 const router = express.Router();
 
 const Lawyer = require("../models/lawyerModel");
+const bookingModal = require("../models/bookingModel");
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -57,11 +58,14 @@ router.get("/getalllawyers", async (req, res) => {
 
 router.post("/rateLawyer", async (req, res) => {
   const lawyerid = req.body.lawyerid;
+  const bookid = req.body.bookid;
   try {
     const lawyer = await Lawyer.findOne({ _id: lawyerid });
+    const book = await bookingModal.findOne({ _id: bookid });
     lawyer.rating = (parseInt(lawyer.rating) + parseInt(req.body.rating)) / 2;
-    lawyer.isRated = true;
+    book.isRated = true;
     await lawyer.save();
+    await book.save();
     res.send("success");
   } catch (error) {
     return res.status(400).json(error);
@@ -73,6 +77,25 @@ router.post("/finishBooking", async (req, res) => {
   try {
     const lawyer = await Lawyer.findOne({ _id: lawyerid });
     lawyer.isisFinished = true;
+    await lawyer.save();
+    res.send("success");
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+});
+
+router.post("/update", async (req, res) => {
+  console.log("fromback");
+  const data = req.body;
+  const lawyerid = data.lawyerid;
+  const fee = data.fee;
+  const latitude = data.latitude;
+  const longitude = data.longitude;
+  try {
+    const lawyer = await Lawyer.findOne({ _id: lawyerid });
+    fee ? (lawyer.fee = fee) : null;
+    latitude ? (lawyer.location.lattitude = latitude) : null;
+    longitude ? (lawyer.location.longitude = longitude) : null;
     await lawyer.save();
     res.send("success");
   } catch (error) {

@@ -11,7 +11,7 @@ import LawyersList from "./pages/LawyersList";
 import UsersList from "./pages/UsersList";
 import VerifyLawyers from "./pages/VerifyLawyers";
 import BookingPage from "./pages/BookingPage";
-import StripedRowExample from "./components/TableBooking2";
+import UpdateField from "./pages/UpdateField";
 
 function App() {
   return (
@@ -21,13 +21,15 @@ function App() {
         <AdminRoute exact path="/userslist" component={UsersList} />
         <AdminRoute exact path="/verifylawyers" component={VerifyLawyers} />
         <ProtectedRoute exact path="/" component={Home} />
-        <Route exact path="/test" component={StripedRowExample} />
+        {/* <Route exact path="/test" component={StripedRowExample} /> */}
         <ProtectedRoute exact path="/mybookings" component={Mybookings} />
+        <LawyerRoute exact path="/updateField" component={UpdateField} />
         <ProtectedRoute
           exact
           path="/bookingpage/:lawyerid"
           component={BookingPage}
         />
+
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/signuplawyer" component={SignupLawyer} />
@@ -46,6 +48,13 @@ export function ProtectedRoute(props) {
 
 export function AdminRoute(props) {
   if (JSON.parse(localStorage.getItem("user")).userType === "admin") {
+    return <Route {...props} />;
+  } else {
+    return <Redirect to="/" />;
+  }
+}
+export function LawyerRoute(props) {
+  if (JSON.parse(localStorage.getItem("user")).userType === "lawyer") {
     return <Route {...props} />;
   } else {
     return <Redirect to="/" />;

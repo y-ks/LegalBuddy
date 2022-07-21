@@ -35,6 +35,8 @@ function BookingPage(props) {
   const addressRef = useRef();
   const descriptionRef = useRef();
   const timeRef = useRef();
+  const data = JSON.parse(localStorage.getItem("user"));
+  const userName = data.name;
 
   const onDateChange = () => {
     const d = dateRef.current.value;
@@ -68,6 +70,7 @@ function BookingPage(props) {
       userid: userID._id,
       time: time,
       lawyerid,
+      username: userName,
     };
     dispatch(bookingRequest(booking));
   };

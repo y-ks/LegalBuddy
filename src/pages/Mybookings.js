@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import NavbarCustom from "../components/NavbarCustom";
 import { fetchBookings } from "../redux/features/bookingSlice";
 import TableBooking from "../components/TableBooking";
-import StripedRowExample from "../components/TableBooking2";
+import TableBookingLawyer from "../components/TableBookingLawyer";
 
 function Mybookings() {
   const dispatch = useDispatch();
   const booking = useSelector((state) => state.getallbookings);
+  const userType = JSON.parse(localStorage.getItem("user")).userType;
 
   useEffect(() => {
     dispatch(fetchBookings());
@@ -17,8 +18,11 @@ function Mybookings() {
     <div>
       <NavbarCustom />;
       {!booking.loading && booking.bookings.length ? (
-        // <TableBooking booking={booking.bookings} />
-        <StripedRowExample booking={booking.bookings} />
+        userType === "user" ? (
+          <TableBooking booking={booking.bookings} />
+        ) : (
+          <TableBookingLawyer booking={booking.bookings} />
+        )
       ) : null}
     </div>
   );
