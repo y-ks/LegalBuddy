@@ -11,6 +11,7 @@ import LawyersList from "./pages/LawyersList";
 import UsersList from "./pages/UsersList";
 import VerifyLawyers from "./pages/VerifyLawyers";
 import BookingPage from "./pages/BookingPage";
+import StripedRowExample from "./components/TableBooking2";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <AdminRoute exact path="/userslist" component={UsersList} />
         <AdminRoute exact path="/verifylawyers" component={VerifyLawyers} />
         <ProtectedRoute exact path="/" component={Home} />
+        <Route exact path="/test" component={StripedRowExample} />
         <ProtectedRoute exact path="/mybookings" component={Mybookings} />
         <ProtectedRoute
           exact

@@ -55,4 +55,29 @@ router.get("/getalllawyers", async (req, res) => {
   }
 });
 
+router.post("/rateLawyer", async (req, res) => {
+  const lawyerid = req.body.lawyerid;
+  try {
+    const lawyer = await Lawyer.findOne({ _id: lawyerid });
+    lawyer.rating = (parseInt(lawyer.rating) + parseInt(req.body.rating)) / 2;
+    lawyer.isRated = true;
+    await lawyer.save();
+    res.send("success");
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+});
+
+router.post("/finishBooking", async (req, res) => {
+  const lawyerid = req.body.lawyerid;
+  try {
+    const lawyer = await Lawyer.findOne({ _id: lawyerid });
+    lawyer.isisFinished = true;
+    await lawyer.save();
+    res.send("success");
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+});
+
 module.exports = router;

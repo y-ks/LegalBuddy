@@ -37,3 +37,22 @@ export const lawyerRegister = (reqObj) => async (dispatch) => {
     dispatch({ type: "LOADING", payload: false });
   }
 };
+
+export const rateLawyer = (reqObj) => async (dispatch) => {
+  dispatch({ type: "LOADING", payload: true });
+
+  try {
+    console.log("rate");
+    await axios.post("api/lawyers/rateLawyer", reqObj);
+    message.success("Rated successfully");
+    setTimeout(() => {
+      window.location.href = "/mybookings";
+    }, 500);
+
+    dispatch({ type: "LOADING", payload: false });
+  } catch (error) {
+    console.log(error.response);
+    message.error(error.response.data.message);
+    dispatch({ type: "LOADING", payload: false });
+  }
+};

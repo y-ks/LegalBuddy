@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import NavbarCustom from "../components/NavbarCustom";
 import { fetchBookings } from "../redux/features/bookingSlice";
 import TableBooking from "../components/TableBooking";
+import StripedRowExample from "../components/TableBooking2";
 
 function Mybookings() {
   const dispatch = useDispatch();
@@ -16,7 +17,8 @@ function Mybookings() {
     <div>
       <NavbarCustom />;
       {!booking.loading && booking.bookings.length ? (
-        <TableBooking booking={booking.bookings} />
+        // <TableBooking booking={booking.bookings} />
+        <StripedRowExample booking={booking.bookings} />
       ) : null}
     </div>
   );
