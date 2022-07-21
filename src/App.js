@@ -12,6 +12,7 @@ import UsersList from "./pages/UsersList";
 import VerifyLawyers from "./pages/VerifyLawyers";
 import BookingPage from "./pages/BookingPage";
 import UpdateField from "./pages/UpdateField";
+import LawyerDetail from "./components/LawyerDetail";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         {/* <Route exact path="/test" component={StripedRowExample} /> */}
         <ProtectedRoute exact path="/mybookings" component={Mybookings} />
         <LawyerRoute exact path="/updateField" component={UpdateField} />
+        <LawyerRoute exact path="/mydetail" component={LawyerDetail} />
         <ProtectedRoute
           exact
           path="/bookingpage/:lawyerid"

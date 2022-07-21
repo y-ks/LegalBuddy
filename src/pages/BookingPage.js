@@ -146,7 +146,9 @@ function BookingPage(props) {
               >
                 <option disabled>.....</option>
                 {lawyerbooking &&
-                lawyerbooking.filter((book) => book.time === "10-11").length ? (
+                lawyerbooking.filter(
+                  (book) => book.time === "10-11" && !book.isFinished
+                ).length ? (
                   <option disabled>10-11</option>
                 ) : (
                   <option>10-11</option>

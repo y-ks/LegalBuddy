@@ -29,6 +29,7 @@ export const MenuButton = () => {
 
         {user.userType === "lawyer" ? (
           <div>
+            <NavDropdown.Item href="/mydetail">My Detail</NavDropdown.Item>
             <NavDropdown.Item href="/mybookings">
               View bookings
             </NavDropdown.Item>
