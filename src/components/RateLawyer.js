@@ -27,7 +27,9 @@ function RateLawyer({ showmodal, lawyerid, closeModal, bookid }) {
         rating: currentValue,
         bookid,
       };
-      dispatch(rateLawyer(reqObj));
+      if (currentValue > 0) {
+        dispatch(rateLawyer(reqObj));
+      }
     };
     return (
       <div className={tableCss.modalBackground}>
