@@ -32,9 +32,13 @@ function TableBooking(props) {
     }
     console.log(rate);
   };
+
+  const hideModal = () => {
+    setShow(false);
+  };
   return (
     <>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={hideModal}>
         <Modal.Header closeButton>
           <Modal.Title>Rate Lawyer</Modal.Title>
         </Modal.Header>
@@ -47,11 +51,11 @@ function TableBooking(props) {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={hideModal}>
             Close
           </Button>
           <Button variant="primary" onClick={handleClose}>
-            Save Changes
+            Submit
           </Button>
         </Modal.Footer>
       </Modal>

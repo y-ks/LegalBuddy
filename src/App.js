@@ -14,6 +14,7 @@ import BookingPage from "./pages/BookingPage";
 import UpdateField from "./pages/UpdateField";
 import LawyerDetail from "./components/LawyerDetail";
 import Test from "./pages/Test";
+import Messenger from "./pages/Messenger";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <ProtectedRoute exact path="/" component={Home} />
         <Route exact path="/test" component={Test} />
         <ProtectedRoute exact path="/mybookings" component={Mybookings} />
+        <ProtectedRoute exact path="/message" component={Messenger} />
         <LawyerRoute exact path="/updateField" component={UpdateField} />
         <LawyerRoute exact path="/mydetail" component={LawyerDetail} />
         <ProtectedRoute
