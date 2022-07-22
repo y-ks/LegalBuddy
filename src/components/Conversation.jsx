@@ -14,19 +14,19 @@ function Conversation({ conversation, currentUser }) {
     getUser();
   }, [currentUser, conversation]);
   return (
-    <div className={conversationCss.conversation}>
-      <img
-        src={
-          user.img_src
-            ? `${process.env.PUBLIC_URL}/lawyers/${user.img_src}.jpg`
-            : `${process.env.PUBLIC_URL}/lawyers/noavatar.png`
-        }
-        className={conversationCss.conversationImg}
-      />
-      {user && (
+    user && (
+      <div className={conversationCss.conversation}>
+        <img
+          src={
+            user.img_src
+              ? `${process.env.PUBLIC_URL}/lawyers/${user.img_src}.jpg`
+              : `${process.env.PUBLIC_URL}/lawyers/noavatar.png`
+          }
+          className={conversationCss.conversationImg}
+        />
         <span className={conversationCss.conversationName}>{user.name}</span>
-      )}
-    </div>
+      </div>
+    )
   );
 }
 
