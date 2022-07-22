@@ -6,14 +6,40 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import { useRef } from "react";
+import { io } from "socket.io-client";
+import ChatOnline from "../components/ChatOnline";
 
 function Messenger() {
   const user = JSON.parse(localStorage.getItem("user"));
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
+  const [arrivalMessage, setArrivalMessage] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  const socket = useRef();
+
   const scrollRef = useRef();
+
+  useEffect(() => {
+    socket.current = io("ws://localhost:8900");
+    socket.current.on("getMessage", (data) => {
+      setArrivalMessage({
+        sender: data.senderId,
+        text: data.text,
+        createdAt: Date.now(),
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    arrivalMessage &&
+      currentChat?.members.includes(arrivalMessage.sender) &&
+      setMessages((prev) => [...prev, arrivalMessage]);
+  }, [arrivalMessage, currentChat]);
+
+  useEffect(() => {
+    socket.current.emit("addUser", user._id);
+  }, [user]);
 
   useEffect(() => {
     const getConversations = async () => {
@@ -46,7 +72,14 @@ function Messenger() {
       text: newMessage,
       conversationId: currentChat._id,
     };
-
+    const receiverId = currentChat.members.find(
+      (member) => member !== user._id
+    );
+    socket.current.emit("sendMessage", {
+      senderId: user._id,
+      receiverId,
+      text: newMessage,
+    });
     try {
       const res = await axios.post("/api/message", message);
       setMessages([...messages, res.data]);
@@ -111,7 +144,13 @@ function Messenger() {
           </div>
         </div>
         <div className={messageCss.chatOnline}>
-          <div className={messageCss.chatOnlineWrapper}></div>
+          <div className={messageCss.chatOnlineWrapper}>
+            <ChatOnline
+              user={user}
+              currentId={user._id}
+              setCurrentChat={setCurrentChat}
+            />
+          </div>
         </div>
       </div>
     </>

@@ -10,7 +10,7 @@ function Message({ message, own }) {
     >
       <div className={messageCss.messageTop}>
         <img
-          src={`${process.env.PUBLIC_URL}/lawyers/smile.jpg`}
+          src={`${process.env.PUBLIC_URL}/lawyers/noavatar.png`}
           className={messageCss.messageImg}
         />
         <p className={messageCss.messageText}>{message.text}</p>
