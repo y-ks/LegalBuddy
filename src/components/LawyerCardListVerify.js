@@ -5,7 +5,6 @@ import { fetchLawyers } from "../redux/features/lawyerSlice";
 import { hideModal } from "../redux/features/modalSlice";
 // import Lawyers from "./../data/lawyers";
 import LawyerCard from "./LawyerCard";
-import LawyerModal from "./LawyerModal";
 import LawyerModalVerify from "./LawyerModalVerify";
 
 const LawyerCardListVerify = () => {

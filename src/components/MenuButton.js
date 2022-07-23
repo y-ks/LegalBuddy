@@ -39,78 +39,80 @@ export const MenuButton = () => {
   };
   return (
     <>
-      <Modal
-        show={show}
-        onHide={handleClose}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header>
-          <Modal.Title
-            id="contained-modal-title-vcenter"
-            className="d-flex flex-row gap-2 justify-content-center align-items-center"
-          >
-            <Image
-              src={`${process.env.PUBLIC_URL}/lawyers/${user.img_src}.jpg`}
-              roundedCircle
-              width="120"
-            />
-            <div>
-              <h4>{user.name}</h4>
-              <h5 className="text-capitalize text-muted">{`${user.category} Lawyer`}</h5>
-              <Rating rating={user.rating} />
+      {user.userType === "lawyer" && (
+        <Modal
+          show={show}
+          onHide={handleClose}
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
+          <Modal.Header>
+            <Modal.Title
+              id="contained-modal-title-vcenter"
+              className="d-flex flex-row gap-2 justify-content-center align-items-center"
+            >
+              <Image
+                src={`${process.env.PUBLIC_URL}/lawyers/${user.img_src}.jpg`}
+                roundedCircle
+                width="120"
+              />
+              <div>
+                <h4>{user.name}</h4>
+                <h5 className="text-capitalize text-muted">{`${user.category} Lawyer`}</h5>
+                <Rating rating={user.rating} />
+              </div>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>
+              <strong>About:</strong> {user.bio}
+            </p>
+            <p>
+              <strong>Address:</strong> {user.address}
+            </p>
+            <p>
+              <strong>Email:</strong> {user.email}
+            </p>
+            <p>
+              <strong>Phone:</strong> {user.phone}
+            </p>
+            <p>
+              <strong>Total Cases:</strong> {user.career.total_cases}
+            </p>
+            <p>
+              <strong>Cases Won:</strong> {user.career.cases_won}
+            </p>
+            <p>
+              <strong>Education:</strong> {user.education}
+            </p>
+            <p>
+              <strong>Languages: </strong>
+              {user.languages.join(", ")}
+            </p>
+            <p>
+              <strong>Find Me Here</strong>
+            </p>
+            <div className="mapouter">
+              <div className="gmap_canvas">
+                <iframe
+                  width="800"
+                  height="300"
+                  id="gmap_canvas"
+                  src="https://maps.google.com/maps?q=27.71743421942345, 85.34668193633858&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  frameborder="0"
+                  scrolling="no"
+                  marginheight="0"
+                  marginwidth="0"
+                ></iframe>
+              </div>
             </div>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>
-            <strong>About:</strong> {user.bio}
-          </p>
-          <p>
-            <strong>Address:</strong> {user.address}
-          </p>
-          <p>
-            <strong>Email:</strong> {user.email}
-          </p>
-          <p>
-            <strong>Phone:</strong> {user.phone}
-          </p>
-          <p>
-            <strong>Total Cases:</strong> {user.career.total_cases}
-          </p>
-          <p>
-            <strong>Cases Won:</strong> {user.career.cases_won}
-          </p>
-          <p>
-            <strong>Education:</strong> {user.education}
-          </p>
-          <p>
-            <strong>Languages: </strong>
-            {user.languages.join(", ")}
-          </p>
-          <p>
-            <strong>Find Me Here</strong>
-          </p>
-          <div className="mapouter">
-            <div className="gmap_canvas">
-              <iframe
-                width="800"
-                height="300"
-                id="gmap_canvas"
-                src="https://maps.google.com/maps?q=27.71743421942345, 85.34668193633858&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                frameborder="0"
-                scrolling="no"
-                marginheight="0"
-                marginwidth="0"
-              ></iframe>
-            </div>
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={handleClose}>Close</Button>
-        </Modal.Footer>
-      </Modal>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={handleClose}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+      )}
       <Nav>
         <NavDropdown
           id="nav-dropdown-dark-example"

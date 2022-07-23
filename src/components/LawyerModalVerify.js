@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Image, Modal } from "react-bootstrap";
 import { Popconfirm } from "antd";
 import { useSelector, useDispatch } from "react-redux";
@@ -87,6 +87,7 @@ function LawyerModalVerify(props) {
           <Popconfirm
             title="Are you sure to verify this lawyer?"
             onConfirm={() => {
+              props.onHide();
               dispatch(verifyLawyer({ lawyerid: lawyer._id }));
             }}
             okText="Yes"
@@ -103,8 +104,8 @@ function LawyerModalVerify(props) {
           <Popconfirm
             title="Are you sure to Reject this lawyer?"
             onConfirm={() => {
+              props.onHide();
               dispatch(rejectLawyer({ lawyerid: lawyer._id }));
-              // dispatch(lawyerState({ id: lawyer._id }));
             }}
             okText="Yes"
             cancelText="No"

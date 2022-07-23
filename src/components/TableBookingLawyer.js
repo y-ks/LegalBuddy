@@ -1,24 +1,24 @@
 import Table from "react-bootstrap/Table";
 import React, { useState } from "react";
-import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
-import { Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import "./table.scss";
 
 import {
-  bookingPayment,
   finishBooking,
   rejectBooking,
   verifyBooking,
 } from "../redux/features/bookingAction";
-import RateLawyer from "./RateLawyer";
+
 import { Popconfirm } from "antd";
 import axios from "axios";
 
 function TableBookingLawyer(props) {
-  const [modal, setModal] = useState(false);
-  const [lawyerid, setlawyerid] = useState();
-  const [bookid, setbookid] = useState();
+  const [show, setShow] = useState(false);
+  const [book, setBook] = useState();
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("user"));
@@ -27,10 +27,15 @@ function TableBookingLawyer(props) {
   const handleVerify = (receiverId, reqObj) => {
     const getConversations = async () => {
       try {
-        await axios.post("/api/conversation", {
-          senderId: user._id,
-          receiverId,
-        });
+        const res = await axios.get(
+          `/api/conversation/find/${receiverId}/${user._id}`
+        );
+        if (!res.data) {
+          await axios.post("/api/conversation", {
+            senderId: user._id,
+            receiverId,
+          });
+        }
       } catch (error) {
         console.log(error);
       }
@@ -41,13 +46,62 @@ function TableBookingLawyer(props) {
 
   return (
     <>
-      {modal && (
-        <RateLawyer
-          showmodal={modal}
-          lawyerid={lawyerid}
-          closeModal={setModal}
-          bookid={bookid}
-        />
+      {book && (
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Booking Detail</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>
+              <strong>Name: </strong>
+              {book.username}
+            </p>
+            <p>
+              <strong>Email:</strong> {book.email}
+            </p>
+            <p>
+              <strong>Address: </strong>
+              {book.address}
+            </p>
+            <p>
+              <strong>Phone:</strong> {book.phone}
+            </p>
+
+            <p style={{ display: "block", overflowWrap: "break-word" }}>
+              <strong>Description: </strong>
+              {book.description}
+            </p>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Popconfirm
+              className="verifyIcon"
+              title="Are you sure to verify this Booking?"
+              onConfirm={() => {
+                handleClose();
+                handleVerify(book.userid, { bookid: book._id });
+              }}
+              okText="Yes"
+              cancelText="No"
+            >
+              <Button variant="success">Verify</Button>
+            </Popconfirm>
+            <Popconfirm
+              className="verifyIcon"
+              title="Are you sure to reject this booking?"
+              onConfirm={() => {
+                handleClose();
+                dispatch(rejectBooking({ bookid: book._id }));
+              }}
+              okText="Yes"
+              cancelText="No"
+            >
+              <Button variant="danger">Reject</Button>
+            </Popconfirm>
+          </Modal.Footer>
+        </Modal>
       )}
       <Table striped>
         <thead>
@@ -57,7 +111,6 @@ function TableBookingLawyer(props) {
             <th>Email</th>
             <th>Time</th>
             <th>Date</th>
-            <th>Description</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -71,35 +124,21 @@ function TableBookingLawyer(props) {
                 <td>{book.email}</td>
                 <td>{book.time}</td>
                 <td>{book.date}</td>
-                <td>{book.description}</td>
                 <td>
                   {" "}
                   {!book.isVerified ? (
                     <>
                       <div>
-                        <Popconfirm
-                          className="verifyIcon"
-                          title="Are you sure to verify this Booking?"
-                          onConfirm={() => {
-                            handleVerify(book.userid, { bookid: book._id });
+                        <Button
+                          variant="primary"
+                          onClick={() => {
+                            setBook(book);
+                            handleShow();
                           }}
-                          okText="Yes"
-                          cancelText="No"
                         >
-                          <CheckOutlined style={{ color: "green" }} />
-                        </Popconfirm>
+                          View Booking
+                        </Button>
                       </div>
-                      <Popconfirm
-                        className="verifyIcon"
-                        title="Are you sure to reject this booking?"
-                        onConfirm={() => {
-                          dispatch(rejectBooking({ bookid: book._id }));
-                        }}
-                        okText="Yes"
-                        cancelText="No"
-                      >
-                        <CloseOutlined style={{ color: "red" }} />
-                      </Popconfirm>
                     </>
                   ) : book.isPaid ? (
                     !book.isFinished ? (
