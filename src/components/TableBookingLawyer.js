@@ -13,6 +13,7 @@ import {
 } from "../redux/features/bookingAction";
 import RateLawyer from "./RateLawyer";
 import { Popconfirm } from "antd";
+import axios from "axios";
 
 function TableBookingLawyer(props) {
   const [modal, setModal] = useState(false);
@@ -22,6 +23,21 @@ function TableBookingLawyer(props) {
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("user"));
   const booking = props.booking.filter((book) => book.lawyerid === user._id);
+
+  const handleVerify = (receiverId, reqObj) => {
+    const getConversations = async () => {
+      try {
+        await axios.post("/api/conversation", {
+          senderId: user._id,
+          receiverId,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getConversations();
+    dispatch(verifyBooking(reqObj));
+  };
 
   return (
     <>
@@ -65,7 +81,7 @@ function TableBookingLawyer(props) {
                           className="verifyIcon"
                           title="Are you sure to verify this Booking?"
                           onConfirm={() => {
-                            dispatch(verifyBooking({ bookid: book._id }));
+                            handleVerify(book.userid, { bookid: book._id });
                           }}
                           okText="Yes"
                           cancelText="No"

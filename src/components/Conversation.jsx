@@ -13,6 +13,7 @@ function Conversation({ conversation, currentUser }) {
     };
     getUser();
   }, [currentUser, conversation]);
+  console.log(user);
   return (
     user && (
       <div className={conversationCss.conversation}>

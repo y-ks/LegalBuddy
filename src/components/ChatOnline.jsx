@@ -20,6 +20,7 @@ export default function ChatOnline({ currentId, setCurrentChat, user }) {
       const res = await axios.get(
         `/api/conversation/find/${currentId}/${user._id}`
       );
+
       setCurrentChat(res.data);
     } catch (err) {
       console.log(err);
@@ -28,7 +29,7 @@ export default function ChatOnline({ currentId, setCurrentChat, user }) {
 
   return (
     <div className={chatCss.chatOnline}>
-      {user.userType === "user" ? (
+      {user.userType === "user" || user.userType === "lawyer" ? (
         <div
           className={chatCss.chatOnlineFriend}
           onClick={() => handleClick(friends)}
@@ -36,7 +37,7 @@ export default function ChatOnline({ currentId, setCurrentChat, user }) {
           <div className={chatCss.chatOnlineImgContainer}>
             <img
               className={chatCss.chatOnlineImg}
-              src={`${process.env.PUBLIC_URL}/lawyers/noavatar.png`}
+              src={`${process.env.PUBLIC_URL}/lawyers/${friends.img_src}.jpg`}
               alt=""
             />
           </div>

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const User = require("../models/userModel");
+const Lawyer = require("../models/lawyerModel");
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -45,9 +46,12 @@ router.get("/getallusers", async (req, res) => {
 
 router.get("/", async (req, res) => {
   const userId = req.query.userId;
+  let user;
   try {
-    const user = await User.findById(userId);
-
+    user = await User.findById(userId);
+    if (!user) {
+      user = await Lawyer.findById(userId);
+    }
     const { password, updatedAt, ...other } = user._doc;
     res.status(200).json(other);
   } catch (err) {

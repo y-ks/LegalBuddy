@@ -1,8 +1,36 @@
+import axios from "axios";
 import React from "react";
 import { NavDropdown, Nav } from "react-bootstrap";
 
 export const MenuButton = () => {
   const user = JSON.parse(localStorage.getItem("user"));
+  const receiverId = "62b1b35384c5c5bf0e6cd0fe";
+  const handleChat = () => {
+    const getConversations = async () => {
+      try {
+        const res = await axios.get(
+          `/api/conversation/find/${receiverId}/${user._id}`
+        );
+        if (!res.data) {
+          await axios.post("/api/conversation", {
+            senderId: user._id,
+            receiverId,
+          });
+
+          setTimeout(() => {
+            window.location.href = "/message";
+          }, 500);
+        } else {
+          setTimeout(() => {
+            window.location.href = "/message";
+          }, 500);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getConversations();
+  };
   return (
     <Nav>
       <NavDropdown
@@ -11,6 +39,16 @@ export const MenuButton = () => {
         menuVariant="dark"
         drop="start"
       >
+        {user.userType === "admin" ? (
+          <>
+            <NavDropdown.Item href="/message">Chatadmin</NavDropdown.Item>
+          </>
+        ) : (
+          <>
+            <NavDropdown.Item onClick={handleChat}>Chat</NavDropdown.Item>
+          </>
+        )}
+
         {user.userType === "user" ? (
           <NavDropdown.Item href="/mybookings">My Bookings</NavDropdown.Item>
         ) : null}

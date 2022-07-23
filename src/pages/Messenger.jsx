@@ -12,6 +12,7 @@ import ChatOnline from "../components/ChatOnline";
 function Messenger() {
   const user = JSON.parse(localStorage.getItem("user"));
   const [conversations, setConversations] = useState([]);
+
   const [currentChat, setCurrentChat] = useState(null);
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [messages, setMessages] = useState([]);
@@ -115,7 +116,11 @@ function Messenger() {
                   {messages &&
                     messages.map((m) => (
                       <div ref={scrollRef} key={m._id}>
-                        <Message message={m} own={m.sender === user._id} />
+                        <Message
+                          message={m}
+                          own={m.sender === user._id}
+                          user={user}
+                        />
                       </div>
                     ))}
                 </div>
