@@ -26,32 +26,35 @@ function Table(props) {
           <div className="col col-3">Email Address</div>
           <div className="col col-4">Action</div>
         </li>
-        {totalUsers.map((user, index) => (
-          <li className="table-row" key={index}>
-            <div className="col col-1" data-label="Job Id">
-              {index + 1}
-            </div>
-            <div className="col col-2" data-label="Customer Name">
-              {user.name}
-            </div>
-            <div className="col col-3" data-label="Amount">
-              {user.email}
-            </div>
-            <div className="col col-4" data-label="Payment Status">
-              <Popconfirm
-                title="Are you sure to remove this user?"
-                onConfirm={() => {
-                  dispatch(removeUser({ userid: user._id }));
-                  dispatch(deleteUser({ id: user._id }));
-                }}
-                okText="Yes"
-                cancelText="No"
-              >
-                <Button variant="outline-danger"> Remove</Button>
-              </Popconfirm>
-            </div>
-          </li>
-        ))}
+        {totalUsers.map(
+          (user, index) =>
+            user.userType === "user" && (
+              <li className="table-row" key={index}>
+                <div className="col col-1" data-label="Job Id">
+                  {index}
+                </div>
+                <div className="col col-2" data-label="Customer Name">
+                  {user.name}
+                </div>
+                <div className="col col-3" data-label="Amount">
+                  {user.email}
+                </div>
+                <div className="col col-4" data-label="Payment Status">
+                  <Popconfirm
+                    title="Are you sure to remove this user?"
+                    onConfirm={() => {
+                      dispatch(removeUser({ userid: user._id }));
+                      dispatch(deleteUser({ id: user._id }));
+                    }}
+                    okText="Yes"
+                    cancelText="No"
+                  >
+                    <Button variant="outline-danger"> Remove</Button>
+                  </Popconfirm>
+                </div>
+              </li>
+            )
+        )}
       </ul>
     </div>
   );

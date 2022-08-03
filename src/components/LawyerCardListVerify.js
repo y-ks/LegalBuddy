@@ -24,6 +24,7 @@ const LawyerCardListVerify = () => {
   } else {
     Lawyers.forEach((lawyer) => {
       if (lawyer.category === category) filteredLawyers.push(lawyer);
+      console.log(lawyer);
     });
   }
   return (

@@ -20,7 +20,7 @@ function Conversation({ conversation, currentUser }) {
         <img
           src={
             user.img_src
-              ? `${process.env.PUBLIC_URL}/lawyers/${user.img_src}.jpg`
+              ? `${process.env.PUBLIC_URL}/lawyers/${user.img_src}`
               : `${process.env.PUBLIC_URL}/lawyers/noavatar.png`
           }
           className={conversationCss.conversationImg}

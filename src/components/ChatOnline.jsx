@@ -37,7 +37,7 @@ export default function ChatOnline({ currentId, setCurrentChat, user }) {
           <div className={chatCss.chatOnlineImgContainer}>
             <img
               className={chatCss.chatOnlineImg}
-              src={`${process.env.PUBLIC_URL}/lawyers/${friends.img_src}.jpg`}
+              src={`${process.env.PUBLIC_URL}/lawyers/${friends.img_src}`}
               alt=""
             />
           </div>

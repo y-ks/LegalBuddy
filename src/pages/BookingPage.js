@@ -71,6 +71,7 @@ function BookingPage(props) {
       time: time,
       lawyerid,
       username: userName,
+      amount: lawyer[0].fee,
     };
     dispatch(bookingRequest(booking));
   };
@@ -134,8 +135,8 @@ function BookingPage(props) {
                 ref={dateRef}
                 onChange={onDateChange}
                 required
-                min="2022-07-21"
-                // max="2022-07-23"
+                min="2022-08-03"
+                // max="2022-08-15"
               />
             </Form.Group>
             <Form.Group as={Col} controlId="formGridState">

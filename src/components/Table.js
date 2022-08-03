@@ -37,7 +37,7 @@ function Table(props) {
               className="d-flex flex-row gap-2 justify-content-center align-items-center"
             >
               <Image
-                src={`${process.env.PUBLIC_URL}/lawyers/${user.img_src}.jpg`}
+                src={`${process.env.PUBLIC_URL}/lawyers/${user.img_src}`}
                 roundedCircle
                 width="120"
               />
@@ -60,6 +60,9 @@ function Table(props) {
             </p>
             <p>
               <strong>Phone:</strong> {user.phone}
+            </p>
+            <p>
+              <strong>Fee:</strong> {user.fee}
             </p>
             <p>
               <strong>Total Cases:</strong> {user.career.total_cases}

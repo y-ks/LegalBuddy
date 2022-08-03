@@ -28,7 +28,7 @@ function LawyerModalVerify(props) {
             className="d-flex flex-row gap-2 justify-content-center align-items-center"
           >
             <Image
-              src={`${process.env.PUBLIC_URL}/lawyers/${lawyer.img_src}.jpg`}
+              src={`${process.env.PUBLIC_URL}/lawyers/${lawyer.img_src}`}
               roundedCircle
               width="120"
             />
@@ -53,6 +53,9 @@ function LawyerModalVerify(props) {
             <strong>Phone:</strong> {lawyer.phone}
           </p>
           <p>
+            <strong>Fee:</strong> {lawyer.fee}
+          </p>
+          <p>
             <strong>Total Cases:</strong> {lawyer.career.total_cases}
           </p>
           <p>
@@ -74,7 +77,7 @@ function LawyerModalVerify(props) {
                 width="800"
                 height="300"
                 id="gmap_canvas"
-                src="https://maps.google.com/maps?q=27.71743421942345, 85.34668193633858&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                src={`https://maps.google.com/maps?q=${lawyer.location.lattitude}, ${lawyer.location.longitude}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
                 frameborder="0"
                 scrolling="no"
                 marginheight="0"

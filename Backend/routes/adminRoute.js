@@ -7,6 +7,7 @@ const Booking = require("../models/bookingModel");
 router.post("/removeUser", async (req, res) => {
   const _id = req.body.userid;
   try {
+    await Booking.deleteMany({ userid: _id });
     const user = await User.findOneAndDelete({ _id });
     if (!user) {
       return res.status(404).send();
@@ -20,6 +21,7 @@ router.post("/removeUser", async (req, res) => {
 router.post("/removeLawyer", async (req, res) => {
   const _id = req.body.lawyerid;
   try {
+    await Booking.deleteMany({ lawyerid: _id });
     const lawyer = await Lawyer.findOneAndDelete({ _id });
     if (!lawyer) {
       return res.status(404).send();

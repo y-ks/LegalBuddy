@@ -11,7 +11,7 @@ const LawyerCard = (props) => {
       <Card onClick={() => dispatch(showModal(lawyer._id))}>
         <Card.Img
           variant="top"
-          src={`${process.env.PUBLIC_URL}/lawyers/${lawyer.img_src}.jpg`}
+          src={`${process.env.PUBLIC_URL}/lawyers/${lawyer.img_src}`}
         />
         <Card.Body>
           <Card.Title>{lawyer.name}</Card.Title>

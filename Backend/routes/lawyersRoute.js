@@ -62,7 +62,8 @@ router.post("/rateLawyer", async (req, res) => {
   try {
     const lawyer = await Lawyer.findOne({ _id: lawyerid });
     const book = await bookingModal.findOne({ _id: bookid });
-    lawyer.rating = (parseInt(lawyer.rating) + parseInt(req.body.rating)) / 2;
+    lawyer.rating =
+      (parseInt(lawyer.rating) + parseInt(req.body.rating) * 2) / 2;
     book.isRated = true;
     await lawyer.save();
     await book.save();

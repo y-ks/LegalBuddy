@@ -122,7 +122,7 @@ function TableBooking(props) {
 
                         dispatch(bookingPayment(reqObj));
                       }}
-                      amount={500 * 100}
+                      amount={book.amount * 100}
                       currency="NPR"
                       stripeKey="pk_test_51LNcMODUEVFHIpAz8EX7bYAWrIwj9dCU3GYSz0XKNh0lXeYYP7XVBEHEadf8R0ZrmRdrV8TudaPU10HrTcuEbNuB00qShgagaa"
                     >

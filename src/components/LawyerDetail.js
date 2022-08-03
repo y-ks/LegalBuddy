@@ -13,7 +13,7 @@ const LawyerModal = (props) => {
       <div className={lawyerCss.item}>
         <div>
           <img
-            src={`${process.env.PUBLIC_URL}/lawyers/${lawyer.img_src}.jpg`}
+            src={`${process.env.PUBLIC_URL}/lawyers/${lawyer.img_src}`}
             roundedCircle
             width="120"
           />
