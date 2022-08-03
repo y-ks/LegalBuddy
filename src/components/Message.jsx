@@ -9,7 +9,7 @@ function Message({ message, own, user }) {
       }
     >
       <div className={messageCss.messageTop}>
-        <img
+        {/* <img
           src={
             own
               ? user.img_src
@@ -18,7 +18,7 @@ function Message({ message, own, user }) {
               : `${process.env.PUBLIC_URL}/lawyers/noavatar.png`
           }
           className={messageCss.messageImg}
-        />
+        /> */}
         <p className={messageCss.messageText}>{message.text}</p>
       </div>
       <div className={messageCss.messageBottom}>

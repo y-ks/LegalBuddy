@@ -15,10 +15,12 @@ function SignupLawyer() {
   const bioRef = useRef();
   const total_casesRef = useRef();
   const cases_wonRef = useRef();
-  const languagesRef = useRef();
+  const feeRef = useRef();
   const numberRef = useRef();
   const educationRef = useRef();
   const nameRef = useRef();
+  const latRef = useRef();
+  const longRef = useRef();
 
   const handleImage = (event) => {
     setImage(event.target.files[0]);
@@ -35,7 +37,9 @@ function SignupLawyer() {
       bioRef.current.value === "" ||
       total_casesRef.current.value === "" ||
       cases_wonRef.current.value === "" ||
-      languagesRef.current.value === "" ||
+      feeRef.current.value === "" ||
+      latRef.current.value === "" ||
+      longRef.current.value === "" ||
       numberRef === "" ||
       educationRef === ""
     ) {
@@ -50,20 +54,25 @@ function SignupLawyer() {
       return;
     }
 
-    const languages = languagesRef.current.value.split(",");
     const value = {
       name: nameRef.current.value,
       category: categoryRef.current.value,
       address: addressRef.current.value,
       bio: bioRef.current.value,
       education: educationRef.current.value,
-      total_cases: total_casesRef.current.value,
-      cases_won: cases_wonRef.current.value,
-      languages: languages,
+      career: {
+        total_cases: total_casesRef.current.value,
+        cases_won: cases_wonRef.current.value,
+      },
+      fee: feeRef.current.value,
       phone: numberRef.current.value,
       email: emailRef.current.value,
       password: passwordRef.current.value,
       img_src: image,
+      location: {
+        lattitude: latRef.current.value,
+        longitude: longRef.current.value,
+      },
     };
 
     const formData = new FormData();
@@ -180,9 +189,29 @@ function SignupLawyer() {
                   <input
                     type="text"
                     className="form-control"
-                    ref={languagesRef}
-                    id="languages"
-                    placeholder="Languages separated by comma"
+                    ref={feeRef}
+                    id="fee"
+                    placeholder="Fee"
+                    autoComplete="none"
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control"
+                    ref={latRef}
+                    id="lat"
+                    placeholder="Location, Latitude"
+                    autoComplete="none"
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control"
+                    ref={longRef}
+                    id="long"
+                    placeholder="Location, Longitude"
                     autoComplete="none"
                   />
                 </div>

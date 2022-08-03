@@ -85,7 +85,10 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    languages: [],
+    languages: {
+      type: Array,
+      default: ["Nepali", "English"],
+    },
     token: [
       {
         token: {
