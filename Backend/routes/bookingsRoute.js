@@ -51,7 +51,7 @@ router.post("/finishBooking", async (req, res) => {
       await booking.save();
     }
 
-    res.send("Your Booking Verified Succesfull");
+    res.send("Your Booking Completed Succesfull");
   } catch (error) {
     return res.status(400).json(error);
   }
@@ -60,7 +60,7 @@ router.post("/finishBooking", async (req, res) => {
 router.post("/rejectBooking", async (req, res) => {
   try {
     await Booking.findOneAndDelete({ _id: req.body.bookid });
-    res.send("Your Booking Verified Succesfull");
+    res.send("Your Booking Rejected Succesfull");
   } catch (error) {
     return res.status(400).json(error);
   }

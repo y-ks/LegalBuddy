@@ -135,7 +135,7 @@ function BookingPage(props) {
                 ref={dateRef}
                 onChange={onDateChange}
                 required
-                min="2022-08-03"
+                min="2022-08-09"
                 // max="2022-08-15"
               />
             </Form.Group>

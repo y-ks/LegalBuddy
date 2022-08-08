@@ -8,6 +8,7 @@ import LawyerCard from "./LawyerCard";
 import LawyerModal from "./LawyerModal";
 
 const LawyerCardList = () => {
+  const userID = JSON.parse(localStorage.getItem("user"))._id;
   const category = useSelector((state) => state.category.value);
   const modalShow = useSelector((state) => state.modalDialog.isModalShow);
 
@@ -27,6 +28,12 @@ const LawyerCardList = () => {
       if (lawyer.category === category) filteredLawyers.push(lawyer);
     });
   }
+
+  let temp = [...filteredLawyers];
+
+  temp.sort((a, b) => b.rating - a.rating);
+  const lawyerExclude = temp.filter((lawyer) => lawyer._id !== userID);
+  filteredLawyers = [...lawyerExclude];
 
   return (
     !lawyer.loading &&

@@ -53,7 +53,7 @@ export const MenuButton = () => {
               className="d-flex flex-row gap-2 justify-content-center align-items-center"
             >
               <Image
-                src={`${process.env.PUBLIC_URL}/lawyers/${user.img_src}.jpg`}
+                src={`${process.env.PUBLIC_URL}/lawyers/${user.img_src}`}
                 roundedCircle
                 width="120"
               />

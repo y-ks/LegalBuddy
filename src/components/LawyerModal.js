@@ -8,6 +8,7 @@ import "./lawyermodal.css";
 const LawyerModal = (props) => {
   const id = useSelector((state) => state.modalDialog.lawyerId);
   const Lawyers = useSelector((state) => state.getalllawyers.lawyers);
+  const userType = JSON.parse(localStorage.getItem("user")).userType;
   // let id = props.lawyer[0]._id;
   if (id) {
     const lawyer = Lawyers.find((lawyer) => lawyer._id === id);
@@ -83,13 +84,15 @@ const LawyerModal = (props) => {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            // style={{ color: "black", background: "white" }}
-            onClick={props.onHide}
-            href={`/bookingpage/${lawyer._id}`}
-          >
-            Contact
-          </Button>
+          {userType === "user" && (
+            <Button
+              // style={{ color: "black", background: "white" }}
+              onClick={props.onHide}
+              href={`/bookingpage/${lawyer._id}`}
+            >
+              Contact
+            </Button>
+          )}
           <Button onClick={props.onHide}>Close</Button>
         </Modal.Footer>
       </Modal>

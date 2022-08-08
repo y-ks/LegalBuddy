@@ -22,7 +22,7 @@ function Table(props) {
       <ul className="responsive-table">
         <li className="table-header">
           <div className="col col-1">Sn</div>
-          <div className="col col-2">Lawyer Name</div>
+          <div className="col col-2">User Name</div>
           <div className="col col-3">Email Address</div>
           <div className="col col-4">Action</div>
         </li>
