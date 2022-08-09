@@ -6,6 +6,7 @@ import { lawyerRegister } from "../redux/features/lawyerAction";
 
 function SignupLawyer() {
   const dispatch = useDispatch();
+  const formData = new FormData();
   const [image, setImage] = useState([]);
   const [certificate, setCertificate] = useState([]);
   const emailRef = useRef();
@@ -30,6 +31,8 @@ function SignupLawyer() {
   const handleCertificate = (event) => {
     setCertificate(event.target.files[0]);
   };
+
+  console.log(image, certificate);
 
   const addLawyer = () => {
     if (
@@ -81,7 +84,6 @@ function SignupLawyer() {
       },
     };
 
-    const formData = new FormData();
     const jsonData = JSON.stringify(value);
     formData.append("img_src[]", image);
     formData.append("img_src[]", certificate);

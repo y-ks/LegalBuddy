@@ -39,13 +39,14 @@ const renameFunc = (oldFileName, mimetype) => {
 router.post("/register", upload.array("img_src[]"), async (req, res) => {
   renameFunc(req.files[0].filename, req.files[0].mimetype);
   renameFunc(req.files[1].filename, req.files[1].mimetype);
-  // const oldFileName = req.file.filename;
-  // const newFileName = oldFileName + "." + req.file.mimetype.split("/")[1];
-  // fs.rename(
-  //   `../public/lawyers/${oldFileName}`,
-  //   `../public/lawyers/${newFileName}`,
-  //   () => {}
-  // );
+
+  // // const oldFileName = req.file.filename;
+  // // const newFileName = oldFileName + "." + req.file.mimetype.split("/")[1];
+  // // fs.rename(
+  // //   `../public/lawyers/${oldFileName}`,
+  // //   `../public/lawyers/${newFileName}`,
+  // //   () => {}
+  // // );
   const body = JSON.parse(req.body.data);
   const { email } = body;
   const userExist = await Lawyer.findOne({ email });
