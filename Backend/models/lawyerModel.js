@@ -13,6 +13,9 @@ const userSchema = mongoose.Schema(
     img_src: {
       type: String,
     },
+    certificate_src: {
+      type: String,
+    },
     category: {
       type: String,
       required: true,

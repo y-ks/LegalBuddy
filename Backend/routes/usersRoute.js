@@ -3,6 +3,7 @@ const router = express.Router();
 
 const User = require("../models/userModel");
 const Lawyer = require("../models/lawyerModel");
+const { message } = require("antd");
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -12,6 +13,27 @@ router.post("/login", async (req, res) => {
       res.send(user);
     } else {
       return res.status(400).json(error);
+    }
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+});
+
+router.post("/changePassword", async (req, res) => {
+  const { userId, password, newpassword } = req.body;
+  try {
+    const user = await User.findOne({ _id: userId, password });
+    const lawyer = await Lawyer.findOne({ _id: userId, password });
+    if (user) {
+      user.password = newpassword;
+      await user.save();
+      return res.send(user);
+    } else if (lawyer) {
+      lawyer.password = newpassword;
+      await lawyer.save();
+      return res.send(lawyer);
+    } else {
+      return res.json({ message: "Old password mismatch" });
     }
   } catch (error) {
     return res.status(400).json(error);

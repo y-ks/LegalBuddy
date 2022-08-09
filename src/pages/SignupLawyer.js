@@ -7,6 +7,7 @@ import { lawyerRegister } from "../redux/features/lawyerAction";
 function SignupLawyer() {
   const dispatch = useDispatch();
   const [image, setImage] = useState([]);
+  const [certificate, setCertificate] = useState([]);
   const emailRef = useRef();
   const passwordRef = useRef();
   const categoryRef = useRef();
@@ -24,6 +25,10 @@ function SignupLawyer() {
 
   const handleImage = (event) => {
     setImage(event.target.files[0]);
+  };
+
+  const handleCertificate = (event) => {
+    setCertificate(event.target.files[0]);
   };
 
   const addLawyer = () => {
@@ -69,6 +74,7 @@ function SignupLawyer() {
       email: emailRef.current.value,
       password: passwordRef.current.value,
       img_src: image,
+      certificate_src: certificate,
       location: {
         lattitude: latRef.current.value,
         longitude: longRef.current.value,
@@ -77,7 +83,8 @@ function SignupLawyer() {
 
     const formData = new FormData();
     const jsonData = JSON.stringify(value);
-    formData.append("img_src", image);
+    formData.append("img_src[]", image);
+    formData.append("img_src[]", certificate);
     formData.append("data", jsonData);
 
     dispatch(lawyerRegister(formData));
@@ -235,12 +242,23 @@ function SignupLawyer() {
                   />
                 </div>
                 <div className="form-group">
+                  <label>Profile Picture</label>
                   <input
                     type="file"
                     className="form-control"
                     id="img_src"
-                    placeholder="Choose image"
+                    placeholder="Profile Picture"
                     onChange={handleImage}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Certificate</label>
+                  <input
+                    type="file"
+                    className="form-control"
+                    id="img_src"
+                    placeholder="Certificate"
+                    onChange={handleCertificate}
                   />
                 </div>
                 <div className="d-flex flex-row align-items-center justify-content-between">

@@ -1,12 +1,20 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { Button, Image, Modal } from "react-bootstrap";
+import React, { useState, useRef } from "react";
+import { Button, Image, Modal, Form } from "react-bootstrap";
 import Rating from "./Rating";
 import { NavDropdown, Nav } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { changePassword } from "../redux/features/userAction";
+import { message } from "antd";
 
 export const MenuButton = () => {
+  const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("user"));
   const [show, setShow] = useState(false);
+  const [modal, setModal] = useState(1);
+  const oldpasswordRef = useRef();
+  const newpasswordRef = useRef();
+  const confirmpasswordRef = useRef();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -37,9 +45,78 @@ export const MenuButton = () => {
     };
     getConversations();
   };
+  const handleChangePassword = (e) => {
+    e.preventDefault();
+    const password = oldpasswordRef.current.value;
+    const newpassword = newpasswordRef.current.value;
+    const confirmpassword = confirmpasswordRef.current.value;
+    if (password === "" || newpassword === "" || confirmpassword === "") {
+      handleClose();
+      message.error("Missing Field");
+      return;
+    }
+
+    if (newpassword !== confirmpassword) {
+      handleClose();
+      message.error("New password and confirm password mismatch");
+      return;
+    }
+
+    if (newpassword === password) {
+      handleClose();
+      message.error("New password cannot be old password");
+      return;
+    }
+
+    const obj = {
+      userId: user._id,
+      password,
+      newpassword,
+    };
+
+    handleClose();
+
+    dispatch(changePassword(obj));
+  };
   return (
     <>
-      {user.userType === "lawyer" && (
+      {modal === 1 && (
+        <Modal show={show} onHide={handleClose}>
+          <div style={{ margin: "10px", padding: " 10px" }}>
+            <Form onSubmit={handleChangePassword}>
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Control
+                  type="password"
+                  placeholder="Old Password"
+                  ref={oldpasswordRef}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>New Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="New Password"
+                  ref={newpasswordRef}
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Confirm-Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Confirm Password"
+                  ref={confirmpasswordRef}
+                />
+              </Form.Group>
+
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
+            </Form>
+          </div>
+        </Modal>
+      )}
+      {user.userType === "lawyer" && modal === 2 && (
         <Modal
           show={show}
           onHide={handleClose}
@@ -148,7 +225,12 @@ export const MenuButton = () => {
 
           {user.userType === "lawyer" ? (
             <div>
-              <NavDropdown.Item onClick={handleShow}>
+              <NavDropdown.Item
+                onClick={() => {
+                  setModal(2);
+                  handleShow();
+                }}
+              >
                 My Detail
               </NavDropdown.Item>
               <NavDropdown.Item href="/mybookings">
@@ -158,6 +240,16 @@ export const MenuButton = () => {
                 Modify Data
               </NavDropdown.Item>
             </div>
+          ) : null}
+          {user.userType !== "admin" ? (
+            <NavDropdown.Item
+              onClick={() => {
+                setModal(1);
+                handleShow();
+              }}
+            >
+              Change Password
+            </NavDropdown.Item>
           ) : null}
 
           <NavDropdown.Divider />

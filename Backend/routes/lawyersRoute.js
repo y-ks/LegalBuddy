@@ -21,14 +21,31 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.post("/register", upload.single("img_src"), async (req, res) => {
-  const oldFileName = req.file.filename;
-  const newFileName = oldFileName + "." + req.file.mimetype.split("/")[1];
+let imgSrc, certificatesrc;
+const renameFunc = (oldFileName, mimetype) => {
+  const newFileName = oldFileName + "." + mimetype.split("/")[1];
   fs.rename(
     `../public/lawyers/${oldFileName}`,
     `../public/lawyers/${newFileName}`,
     () => {}
   );
+  if (!imgSrc) {
+    imgSrc = newFileName;
+  } else {
+    certificatesrc = newFileName;
+  }
+};
+
+router.post("/register", upload.array("img_src[]"), async (req, res) => {
+  renameFunc(req.files[0].filename, req.files[0].mimetype);
+  renameFunc(req.files[1].filename, req.files[1].mimetype);
+  // const oldFileName = req.file.filename;
+  // const newFileName = oldFileName + "." + req.file.mimetype.split("/")[1];
+  // fs.rename(
+  //   `../public/lawyers/${oldFileName}`,
+  //   `../public/lawyers/${newFileName}`,
+  //   () => {}
+  // );
   const body = JSON.parse(req.body.data);
   const { email } = body;
   const userExist = await Lawyer.findOne({ email });
@@ -39,7 +56,8 @@ router.post("/register", upload.single("img_src"), async (req, res) => {
 
   try {
     const newLawyer = new Lawyer(body);
-    newLawyer.img_src = newFileName;
+    newLawyer.img_src = imgSrc;
+    newLawyer.certificate_src = certificatesrc;
     await newLawyer.save();
     res.send("Lawyer registered Succesfully");
   } catch (error) {
