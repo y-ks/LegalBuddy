@@ -11,7 +11,6 @@ const Login = () => {
   const passwordRef = useRef();
 
   async function handleSubmit(e) {
-    console.log(e);
     e.preventDefault();
     const value = {
       email: emailRef.current.value,
